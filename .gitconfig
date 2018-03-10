@@ -1,0 +1,7 @@
+[user]
+	name = Federico Cerutti
+	email = federico@ceres-c.it
+[credential]
+	helper = cache --timeout=3600
+[core]
+	editor = nano
