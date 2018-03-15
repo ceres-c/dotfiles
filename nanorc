@@ -1,3 +1,5 @@
+set tabsize 4
+
 include /usr/share/nano/texinfo.nanorc
 include /usr/share/nano/changelog.nanorc
 include /usr/share/nano/rust.nanorc
