@@ -88,7 +88,18 @@ ZSH_THEME="robbyrussell"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git history-substring-search)
 
-source /usr/share/zsh-theme-powerlevel9k/powerlevel9k.zsh-theme
+## functions.zsh: Choose theme based on emulator
+function choosetheme() {
+ if [ -n "${VTE_VERSION}" ]
+ then
+# Working in gnome-term
+ source /usr/share/zsh-theme-powerlevel9k/powerlevel9k.zsh-theme
+ else
+# Outside of gnome-term
+ fi
+}
+
+choosetheme
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
