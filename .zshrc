@@ -90,7 +90,7 @@ plugins=(git history-substring-search)
 
 ## functions.zsh: Choose theme based on emulator
 function choosetheme() {
- if [ -n "${VTE_VERSION}" ]
+ if [ -n "${KONSOLE_PROFILE_NAME}" ]
  then
 # Working in gnome-term
  source /usr/share/zsh-theme-powerlevel9k/powerlevel9k.zsh-theme

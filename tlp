@@ -39,8 +39,8 @@ MAX_LOST_WORK_SECS_ON_BAT=60
 #   You *must* disable your distribution's governor settings or conflicts will
 #   occur. ondemand is sufficient for *almost all* workloads, you should know
 #   what you're doing!
-#CPU_SCALING_GOVERNOR_ON_AC=powersave
-#CPU_SCALING_GOVERNOR_ON_BAT=powersave
+CPU_SCALING_GOVERNOR_ON_AC=powersave
+CPU_SCALING_GOVERNOR_ON_BAT=powersave
 
 # Set the min/max frequency available for the scaling governor.
 # Possible values strongly depend on your CPU. For available frequencies see
@@ -61,10 +61,10 @@ CPU_HWP_ON_BAT=balance_performance
 # Limit the max/min P-state to control the power dissipation of the CPU.
 # Values are stated as a percentage of the available performance.
 # Requires an Intel Core i processor with intel_pstate driver.
-CPU_MIN_PERF_ON_AC=0
-CPU_MAX_PERF_ON_AC=100
-CPU_MIN_PERF_ON_BAT=0
-CPU_MAX_PERF_ON_BAT=50
+#CPU_MIN_PERF_ON_AC=0
+#CPU_MAX_PERF_ON_AC=100
+#CPU_MIN_PERF_ON_BAT=0
+#CPU_MAX_PERF_ON_BAT=50
 
 # Set the CPU "turbo boost" feature: 0=disable, 1=allow
 # Requires an Intel Core i processor.
@@ -102,8 +102,8 @@ ENERGY_PERF_POLICY_ON_BAT=powersave
 # Levels 1..127 may spin down the disk; 255 allowable on most drives.
 # Separate values for multiple disks with spaces. Use the special value 'keep'
 # to keep the hardware default for the particular disk.
-DISK_APM_LEVEL_ON_AC="254 254"
-DISK_APM_LEVEL_ON_BAT="128 128"
+#DISK_APM_LEVEL_ON_AC="254 254"
+#DISK_APM_LEVEL_ON_BAT="128 128"
 
 # Hard disk spin down timeout:
 #   0:        spin down disabled
