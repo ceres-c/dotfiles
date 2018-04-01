@@ -132,3 +132,4 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias restartusb='echo 0000:00:14.0 | sudo tee /sys/bus/pci/drivers/xhci_hcd/unbind; sleep 5; echo 0000:00:14.0 | sudo tee /sys/bus/pci/drivers/xhci_hcd/bind'
 alias lschmod='ls -l | awk '\''{k=0;for(i=0;i<=8;i++)k+=((substr($1,i+2,1)~/[rwx]/)*2^(8-i));if(k)printf("%0o ",k);print}'\'
+alias l1="ls -1"
