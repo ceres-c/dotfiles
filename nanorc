@@ -1,4 +1,5 @@
 set tabsize 4
+set nowrap
 
 include /usr/share/nano/texinfo.nanorc
 include /usr/share/nano/changelog.nanorc

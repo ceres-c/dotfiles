@@ -212,7 +212,7 @@ USB_BLACKLIST_BTUSB=0
 
 # Phone devices are excluded from USB autosuspend:
 #   0=do not exclude, 1=exclude (enable charging)
-USB_BLACKLIST_PHONE=0
+USB_BLACKLIST_PHONE=1
 
 # WWAN devices are excluded from USB autosuspend:
 #   0=do not exclude, 1=exclude
