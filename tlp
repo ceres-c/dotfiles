@@ -54,8 +54,8 @@ CPU_SCALING_GOVERNOR_ON_BAT=powersave
 #   default, performance, balance_performance, balance_power, power
 # Values are given in order of increasing power saving.
 # Note: Intel Skylake or newer CPU and Kernel >= 4.10 required.
-CPU_HWP_ON_AC=balance_power
-CPU_HWP_ON_BAT=balance_performance
+CPU_HWP_ON_AC=balance_performance
+CPU_HWP_ON_BAT=balance_power
 
 # Set Intel P-state performance: 0..100 (%)
 # Limit the max/min P-state to control the power dissipation of the CPU.
