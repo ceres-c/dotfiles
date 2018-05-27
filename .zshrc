@@ -1,4 +1,5 @@
 export ZSH=/home/federico/.oh-my-zsh
+ZSH_DISABLE_COMPFIX=true
 
 ################ POWERLEVEL 9K ################
 POWERLEVEL9K_MODE='awesome-patched'
@@ -35,7 +36,7 @@ POWERLEVEL9K_PROMPT_ON_NEWLINE=true
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="robbyrussell"
+#ZSH_THEME="robbyrussell"
 
 # Set list of themes to load
 # Setting this variable when ZSH_THEME=random
@@ -90,13 +91,18 @@ plugins=(git history-substring-search)
 
 ## functions.zsh: Choose theme based on emulator
 function choosetheme() {
- if [ -n "${KONSOLE_PROFILE_NAME}" ]
- then
-# Working in gnome-term
- source /usr/share/zsh-theme-powerlevel9k/powerlevel9k.zsh-theme
- else
-# Outside of gnome-term
- fi
+	if [ -n "${KONSOLE_PROFILE_NAME}" ]
+	then
+# Working in konsole as normal user
+		source /usr/share/zsh-theme-powerlevel9k/powerlevel9k.zsh-theme
+	elif [ -n "${COLORTERM}" ]
+	then
+# Working in konsole as superuser
+		source /usr/share/zsh-theme-powerlevel9k/powerlevel9k.zsh-theme
+	else
+# Outside of konsole
+	ZSH_THEME=pygmalion
+	fi
 }
 
 choosetheme
@@ -131,5 +137,6 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias restartusb='echo 0000:00:14.0 | sudo tee /sys/bus/pci/drivers/xhci_hcd/unbind; sleep 5; echo 0000:00:14.0 | sudo tee /sys/bus/pci/drivers/xhci_hcd/bind'
-alias lschmod='ls -l | awk '\''{k=0;for(i=0;i<=8;i++)k+=((substr($1,i+2,1)~/[rwx]/)*2^(8-i));if(k)printf("%0o ",k);print}'\'
+alias lschmod='ls -la | awk '\''{k=0;for(i=0;i<=8;i++)k+=((substr($1,i+2,1)~/[rwx]/)*2^(8-i));if(k)printf("%0o ",k);print}'\'
 alias l1="ls -1"
+alias sugo=sudo
