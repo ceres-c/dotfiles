@@ -8,7 +8,7 @@ sudo ln -f ./70-persistent-net.rules /etc/udev/rules.d/70-persistent-net.rules
 sudo ln -sf $HOME/dotfiles/libnfc.conf /etc/nfc/libnfc.conf
 sudo ln -sf $HOME/dotfiles/tlp /etc/default/tlp
 
-# Root use config
+# root user config
 sudo ln -sf $HOME/dotfiles/.tmux.conf /root/.tmux.conf
 sudo ln -sf $HOME/dotfiles/.zshrc /root/.zshrc
 sudo ln -sf $HOME/dotfiles/.gitconfig /root/.gitconfig
