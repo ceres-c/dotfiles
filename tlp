@@ -204,7 +204,8 @@ USB_AUTOSUSPEND=1
 # Exclude listed devices from USB autosuspend (separate with spaces).
 # Use lsusb to get the ids.
 # Note: input devices (usbhid) are excluded automatically
-USB_BLACKLIST="0bda:8153"
+# Following UIDs are usb ethernet network card and Shanling M3s DAC
+USB_BLACKLIST="0bda:8153 20b1:301f"
 
 # Bluetooth devices are excluded from USB autosuspend:
 #   0=do not exclude, 1=exclude
