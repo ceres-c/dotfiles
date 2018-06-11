@@ -1,4 +1,5 @@
 export ZSH=/home/federico/.oh-my-zsh
+export FPATH=$HOME/dotfiles/zsh_autocomplete_rclone:$FPATH
 ZSH_DISABLE_COMPFIX=true
 
 ################ POWERLEVEL 9K ################
