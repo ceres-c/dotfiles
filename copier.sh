@@ -22,3 +22,5 @@ ln -sf $HOME/dotfiles/.gitconfig $HOME/.gitconfig
 mkdir $HOME/.config/nano/
 ln -sf $HOME/dotfiles/nanorc $HOME/.config/nano/nanorc
 ln -sf $HOME/dotfiles/conky.conf $HOME/.config/conky/conky.conf
+mkdir $HOME/.config/pip/
+ln -sf $HOME/dotfiles/pip.conf $HOME/.config/pip/pip.conf
