@@ -1,12 +1,15 @@
 #!/bin/bash
+# Nano syntax highlight
 for i in $(ls $HOME/dotfiles/nano); do
 	sudo ln -sf $HOME/dotfiles/nano/$i /usr/share/nano/$i
 done
 
 # System config
-sudo ln -f ./70-persistent-net.rules /etc/udev/rules.d/70-persistent-net.rules
-sudo ln -sf $HOME/dotfiles/libnfc.conf /etc/nfc/libnfc.conf
+sudo ln -f ./70-persistent-net.rules /etc/udev/rules.d/70-persistent-net.rules # For my USB ethernet adapter
+sudo ln -sf $HOME/dotfiles/libnfc.conf /etc/nfc/libnfc.conf # To allow scanning of USB-UART adapters
 sudo ln -sf $HOME/dotfiles/tlp /etc/default/tlp
+sudo ln -sf $HOME/dotfiles/intel-undervolt.conf /etc/intel-undervolt.conf # Undervolt config for my XPS 13 9360
+sudo ln -sf $HOME/dotfiles/blacklist-libnfc.conf /etc/modprobe.d/blacklist-libnfc.conf # Modprobe offending pn533 modules
 
 # root user config
 sudo ln -sf $HOME/dotfiles/.tmux.conf /root/.tmux.conf
