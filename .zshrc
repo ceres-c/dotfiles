@@ -3,22 +3,25 @@ export FPATH=$HOME/dotfiles/zsh_autocomplete_rclone:$FPATH
 ZSH_DISABLE_COMPFIX=true
 
 ################ POWERLEVEL 9K ################
-POWERLEVEL9K_MODE='awesome-patched'
+POWERLEVEL9K_MODE='nerdfont-complete'
 
 POWERLEVEL9K_BATTERY_CHARGING='yellow'
 POWERLEVEL9K_BATTERY_CHARGED='green'
 POWERLEVEL9K_BATTERY_DISCONNECTED='$DEFAULT_COLOR'
-POWERLEVEL9K_BATTERY_LOW_THRESHOLD='10'
+POWERLEVEL9K_BATTERY_LOW_THRESHOLD='15'
 POWERLEVEL9K_BATTERY_LOW_COLOR='red'
-POWERLEVEL9K_BATTERY_ICON='\uf1e6 '
+POWERLEVEL9K_BATTERY_ICON='\uf1e6'
+POWERLEVEL9K_HOME_ICON='\uE12C '
+POWERLEVEL9K_HOME_SUB_ICON='\uF07C '
+POWERLEVEL9K_RAM_ICON='\uF0E4 '
+POWERLEVEL9K_VCS_GIT_GITHUB_ICON='\uF408 '
+POWERLEVEL9K_TIME_ICON='\uf583'
 POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX=''
 POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX='\uf0da'
-#POWERLEVEL9K_VCS_GIT_ICON='\ue60a'
 
 POWERLEVEL9K_VCS_MODIFIED_BACKGROUND='yellow'
 POWERLEVEL9K_VCS_UNTRACKED_BACKGROUND='yellow'
 #POWERLEVEL9K_VCS_UNTRACKED_ICON='?'
-
 
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(status battery context dir vcs)
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(time background_jobs ram virtualenv rbenv rvm)
@@ -27,7 +30,7 @@ POWERLEVEL9K_SHORTEN_STRATEGY="truncate_middle"
 POWERLEVEL9K_SHORTEN_DIR_LENGTH=4
 
 #POWERLEVEL9K_CUSTOM_TIME_FORMAT="%D{\uf017 %H:%M:%S}"
-POWERLEVEL9K_TIME_FORMAT="%D{\uf017 %H:%M \uf073 %d.%m.%y}"
+POWERLEVEL9K_TIME_FORMAT="%D{\uf017 %H:%M \uf073 %Y-%m-%d}"
 
 POWERLEVEL9K_STATUS_VERBOSE=true
 
@@ -91,7 +94,8 @@ POWERLEVEL9K_PROMPT_ON_NEWLINE=true
 plugins=(git history-substring-search)
 
 ## functions.zsh: Choose theme based on emulator
-function choosetheme() {
+function choosetheme()
+{
 	if [ -n "${KONSOLE_PROFILE_NAME}" ]
 	then
 # Working in konsole as normal user
@@ -106,7 +110,19 @@ function choosetheme() {
 	fi
 }
 
+function fixicons()
+{
+for key in ${(k)icons[@]}
+do
+    if [[ ! $key =~ 'SEPARATOR' ]]
+    then
+        icons[$key]=" ${icons[$key]} "
+    fi
+done
+}
+
 choosetheme
+#fixicons
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
