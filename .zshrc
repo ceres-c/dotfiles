@@ -112,19 +112,7 @@ function choosetheme()
 	fi
 }
 
-function fixicons()
-{
-for key in ${(k)icons[@]}
-do
-    if [[ ! $key =~ 'SEPARATOR' ]]
-    then
-        icons[$key]=" ${icons[$key]} "
-    fi
-done
-}
-
 choosetheme
-#fixicons
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
