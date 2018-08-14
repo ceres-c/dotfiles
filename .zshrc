@@ -1,5 +1,6 @@
 export ZSH=/home/federico/.oh-my-zsh
 export FPATH=$HOME/dotfiles/zsh_autocomplete_rclone:$FPATH
+export EDITOR="nano"
 ZSH_DISABLE_COMPFIX=true
 
 ################ POWERLEVEL 9K ################
