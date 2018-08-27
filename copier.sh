@@ -29,6 +29,11 @@ fi
 sudo ln -sf $HOME/dotfiles/nanorc /root/.config/nano/nanorc
 
 # Current user config
+if [ -d "$HOME/.config/terminator/" ]; then
+	ln -sf $HOME/dotfiles/terminator.conf $HOME/.config/terminator/config
+else
+	echo "Terminator does not seem to be installed. Install it and then run this script again"
+fi
 ln -sf $HOME/dotfiles/.tmux.conf $HOME/.tmux.conf
 ln -sf $HOME/dotfiles/.zshrc $HOME/.zshrc
 ln -sf $HOME/dotfiles/.gitconfig $HOME/.gitconfig
