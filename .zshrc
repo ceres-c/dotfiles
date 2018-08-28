@@ -1,14 +1,15 @@
 export ZSH=/home/federico/.oh-my-zsh
 export FPATH=$HOME/dotfiles/zsh_autocomplete_rclone:$FPATH
-export EDITOR="nano"
+export VISUAL=nano
+export EDITOR="$VISUAL"
 
 alias restartusb='echo 0000:00:14.0 | sudo tee /sys/bus/pci/drivers/xhci_hcd/unbind; sleep 5; echo 0000:00:14.0 | sudo tee /sys/bus/pci/drivers/xhci_hcd/bind'
 alias lschmod='ls -la | awk '\''{k=0;for(i=0;i<=8;i++)k+=((substr($1,i+2,1)~/[rwx]/)*2^(8-i));if(k)printf("%0o ",k);print}'\'
 alias l1="ls -1"
 alias sugo=sudo
 
-source $ZSH/oh-my-zsh.sh
 plugins=(git history-substring-search)
+source $ZSH/oh-my-zsh.sh
 
 ## Choose theme based on emulator
 function choosetheme()
@@ -19,7 +20,7 @@ function choosetheme()
 		source /usr/share/zsh-theme-powerlevel9k/powerlevel9k.zsh-theme
 	else
 # Is this TTY?
-	ZSH_THEME=pygmalion
+		ZSH_THEME=pygmalion
 	fi
 }
 
