@@ -8,6 +8,8 @@ alias lschmod='ls -la | awk '\''{k=0;for(i=0;i<=8;i++)k+=((substr($1,i+2,1)~/[rw
 alias l1="ls -1"
 alias sugo=sudo
 
+bindkey '\e[3;3~' kill-word
+
 plugins=(git history-substring-search)
 source $ZSH/oh-my-zsh.sh
 
