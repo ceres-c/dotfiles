@@ -1,5 +1,6 @@
 export ZSH=/home/federico/.oh-my-zsh
 export FPATH=$HOME/dotfiles/zsh_autocomplete_rclone:$FPATH
+export PATH=$PATH:/home/federico/.local/bin
 export VISUAL=nano
 export EDITOR="$VISUAL"
 
