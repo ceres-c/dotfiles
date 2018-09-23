@@ -3,6 +3,8 @@ export FPATH=$HOME/dotfiles/zsh_autocomplete_rclone:$FPATH
 export PATH=$PATH:/home/federico/.local/bin
 export VISUAL=nano
 export EDITOR="$VISUAL"
+# The following export looks bad and should be a workaround, this should be fixed in a fresh install
+export PYTHONPATH="/usr/lib/python3.7/site-packages/"
 
 alias restartusb='echo 0000:00:14.0 | sudo tee /sys/bus/pci/drivers/xhci_hcd/unbind; sleep 5; echo 0000:00:14.0 | sudo tee /sys/bus/pci/drivers/xhci_hcd/bind'
 alias lschmod='ls -la | awk '\''{k=0;for(i=0;i<=8;i++)k+=((substr($1,i+2,1)~/[rwx]/)*2^(8-i));if(k)printf("%0o ",k);print}'\'

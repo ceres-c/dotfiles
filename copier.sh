@@ -48,4 +48,5 @@ ln -sf $HOME/dotfiles/conky.conf $HOME/.config/conky/conky.conf
 if [ ! -d "$HOME/.config/pip/" ]; then
 	mkdir $HOME/.config/pip/
 fi
+echo "You don't want to use pip with the --user switch anymore. Please do things the right way this time and fix this mess.\nAlso, remove the PYTHONPATH export in .zshrc"
 ln -sf $HOME/dotfiles/pip.conf $HOME/.config/pip/pip.conf
