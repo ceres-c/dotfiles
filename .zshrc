@@ -10,6 +10,7 @@ alias restartusb='echo 0000:00:14.0 | sudo tee /sys/bus/pci/drivers/xhci_hcd/unb
 alias lschmod='ls -la | awk '\''{k=0;for(i=0;i<=8;i++)k+=((substr($1,i+2,1)~/[rwx]/)*2^(8-i));if(k)printf("%0o ",k);print}'\'
 alias l1="ls -1"
 alias sugo=sudo
+alias gib="git clone"
 
 bindkey '\e[3;3~' kill-word
 
