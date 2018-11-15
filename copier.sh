@@ -45,6 +45,10 @@ if [ ! -d "$HOME/.config/conky/" ]; then
 	mkdir $HOME/.config/conky/
 fi
 ln -sf $HOME/dotfiles/conky.conf $HOME/.config/conky/conky.conf
+if [ ! -d "$HOME/.config/fusuma/" ]; then
+	mkdir ~/.config/fusuma
+fi
+ln -sf $HOME/dotfiles/fusuma_config.yml $HOME/.config/fusuma/config.yml
 if [ ! -d "$HOME/.config/pip/" ]; then
 	mkdir $HOME/.config/pip/
 fi
