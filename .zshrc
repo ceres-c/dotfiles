@@ -1,6 +1,6 @@
 export ZSH=/home/federico/.oh-my-zsh
 export FPATH=$HOME/dotfiles/zsh_autocomplete_rclone:$FPATH
-export PATH=$PATH:/home/federico/.local/bin
+export PATH=$PATH:/home/federico/.local/bin:/home/federico/.gem/ruby/2.5.0/bin
 export VISUAL=nano
 export EDITOR="$VISUAL"
 # The following export looks bad and should be a workaround, this should be fixed in a fresh install
@@ -60,3 +60,9 @@ POWERLEVEL9K_STATUS_VERBOSE=true
 
 POWERLEVEL9K_PROMPT_ON_NEWLINE=true
 ############## END POWERLEVEL 9K ##############
+
+PATH="/home/federico/perl5/bin${PATH:+:${PATH}}"; export PATH;
+PERL5LIB="/home/federico/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
+PERL_LOCAL_LIB_ROOT="/home/federico/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
+PERL_MB_OPT="--install_base \"/home/federico/perl5\""; export PERL_MB_OPT;
+PERL_MM_OPT="INSTALL_BASE=/home/federico/perl5"; export PERL_MM_OPT;
