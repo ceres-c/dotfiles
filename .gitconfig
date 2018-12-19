@@ -5,6 +5,7 @@
 	helper = cache --timeout=3600
 [core]
 	editor = nano
+	excludesfile = /home/federico/dotfiles/.gitignore_global
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
