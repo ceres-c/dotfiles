@@ -5,7 +5,8 @@ for i in $(ls $HOME/dotfiles/nano); do
 done
 
 # System config
-sudo ln -f ./70-persistent-net.rules /etc/udev/rules.d/70-persistent-net.rules # For my USB ethernet adapter
+sudo ln -f ./70-persistent-net.rules /etc/udev/rules.d/70-persistent-net.rules	# For USB ethernet adapters
+sudo ln -f ./50-usbtinyisp.rules /etc/udev/rules.d/50-usbtinyisp.rules			# To program atmel devices without sudo
 if sudo [ -d "/etc/nfc/" ]; then
 	sudo ln -sf $HOME/dotfiles/libnfc.conf /etc/nfc/libnfc.conf # To allow scanning of USB-UART adapters
 else
