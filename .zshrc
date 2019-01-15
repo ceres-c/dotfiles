@@ -3,6 +3,7 @@ export FPATH=$HOME/dotfiles/zsh_autocomplete_rclone:$FPATH
 export PATH=$PATH:/home/federico/.local/bin:/home/federico/.gem/ruby/2.5.0/bin
 export VISUAL=nano
 export EDITOR="$VISUAL"
+export ZSH_DISABLE_COMPFIX=true
 # The following export looks bad and should be a workaround, this should be fixed in a fresh install
 export PYTHONPATH="/usr/lib/python3.7/site-packages/"
 
