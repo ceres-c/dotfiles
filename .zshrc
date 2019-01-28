@@ -26,7 +26,8 @@ function choosetheme()
 }
 ## End of choose theme
 
-bindkey '\e[3;3~' kill-word
+bindkey '^[[3;5~' kill-word
+bindkey '^H' backward-kill-word
 
 plugins=(git history-substring-search)
 choosetheme					# Themes should be chosen before exporting oh-my-zsh
