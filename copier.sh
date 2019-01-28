@@ -55,3 +55,6 @@ if [ ! -d "$HOME/.config/pip/" ]; then
 fi
 echo "You don't want to use pip with the --user switch anymore. Please do things the right way this time and fix this mess.\nAlso, remove the PYTHONPATH export in .zshrc"
 ln -sf $HOME/dotfiles/pip.conf $HOME/.config/pip/pip.conf
+
+# Increase number of inotify watchers
+echo fs.inotify.max_user_watches=524288 | sudo tee /etc/sysctl.d/40-max-user-watches.conf && sudo sysctl --system
