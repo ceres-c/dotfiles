@@ -3,7 +3,7 @@ set nowrap
 set smooth
 set autoindent
 set wordbounds
-set rebindkeypad
+set rawsequences
 
 bind    ^H    cutwordleft    main
 
