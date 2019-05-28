@@ -37,6 +37,7 @@ sudo ln -sf $HOME/dotfiles/nanorc /root/.config/nano/nanorc
 # Current user config
 if [ -d "$HOME/.config/terminator/" ]; then
 	ln -sf $HOME/dotfiles/terminator.conf $HOME/.config/terminator/config
+	ln -f ./openTerminatorHere.desktop $HOME/.local/share/kservices5/ServiceMenus/openTerminatorHere.desktop
 else
 	echo "Terminator does not seem to be installed. Install it and then run this script again"
 fi
