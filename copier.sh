@@ -5,8 +5,13 @@ for i in $(ls $HOME/dotfiles/nano); do
 done
 
 # System config
-sudo ln -f ./70-persistent-net.rules /etc/udev/rules.d/70-persistent-net.rules	# For USB ethernet adapters
+sudo ln -f ./49-micronucleus.rules /etc/udev/rules.d/49-micronucleus.rules		# Micronucleus boards
 sudo ln -f ./50-usbtinyisp.rules /etc/udev/rules.d/50-usbtinyisp.rules			# To program atmel devices without sudo
+sudo ln -f ./52-usb.rules /etc/udev/rules.d/52-usb.rules						# ST CR95HF NFC board
+sudo ln -f ./70-persistent-net.rules /etc/udev/rules.d/70-persistent-net.rules	# For USB ethernet adapters
+sudo ln -f ./77-mm-usb-device-blacklist.rules /etc/udev/rules.d/77-mm-usb-device-blacklist.rules # Proxmark3 ModemManager fix
+sudo ln -f ./93-pn53x.rules /etc/udev/rules.d/93-pn53x.rules					# PN532 based devices without sudo
+sudo cat /etc/sysctl.d/10-local.conf											# Allows dmesg without sudo
 if sudo [ -d "/etc/nfc/" ]; then
 	sudo ln -sf $HOME/dotfiles/libnfc.conf /etc/nfc/libnfc.conf # To allow scanning of USB-UART adapters
 else
@@ -58,3 +63,10 @@ ln -sf $HOME/dotfiles/pip.conf $HOME/.config/pip/pip.conf
 
 # Increase number of inotify watchers
 echo fs.inotify.max_user_watches=524288 | sudo tee /etc/sysctl.d/40-max-user-watches.conf
+
+# MPV config for VAAPI
+if [ ! -d "$HOME/.config/mpv/" ]; then
+    mkdir $HOME/.config/mpv/
+    fi
+echo "Please check if libva is installed"
+ln -sf $HOME/dotfiles/mpv.conf $HOME/.config/mpv/mpv.conf
