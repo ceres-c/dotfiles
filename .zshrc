@@ -1,4 +1,3 @@
-export ZSH=/home/federico/.oh-my-zsh
 export FPATH=$HOME/dotfiles/zsh_autocomplete_rclone:$FPATH
 export PATH=$PATH:/home/federico/.local/bin:/home/federico/.gem/ruby/2.5.0/bin
 export VISUAL=nano
@@ -18,7 +17,7 @@ function choosetheme()
 	if [ -n "${COLORTERM}" ]
 # Working in a colorful terminal
 	then
-		source /usr/share/zsh-theme-powerlevel9k/powerlevel9k.zsh-theme
+		source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 	else
 # Is this TTY?
 		ZSH_THEME=pygmalion
@@ -29,21 +28,18 @@ function choosetheme()
 bindkey '^[[3;5~' kill-word
 bindkey '^H' backward-kill-word
 
-plugins=(git history-substring-search)
-choosetheme					# Themes should be chosen before exporting oh-my-zsh
-source $ZSH/oh-my-zsh.sh
+choosetheme
 
-################ POWERLEVEL 9K ################
+############### POWERLEVEL 10K ################
 POWERLEVEL9K_MODE='nerdfont-complete'
 
+POWERLEVEL9K_BATTERY_VERBOSE=false
 POWERLEVEL9K_BATTERY_CHARGING='yellow'
 POWERLEVEL9K_BATTERY_CHARGED='green'
 POWERLEVEL9K_BATTERY_DISCONNECTED='$DEFAULT_COLOR'
 POWERLEVEL9K_BATTERY_LOW_THRESHOLD='15'
 POWERLEVEL9K_BATTERY_LOW_COLOR='red'
-POWERLEVEL9K_BATTERY_ICON='\uf1e6'
 POWERLEVEL9K_HOME_ICON='\uE12C'
-POWERLEVEL9K_VCS_GIT_GITHUB_ICON='\uF408'
 POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX=''
 POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX='\uf0da'
 
@@ -51,17 +47,15 @@ POWERLEVEL9K_VCS_MODIFIED_BACKGROUND='yellow'
 POWERLEVEL9K_VCS_UNTRACKED_BACKGROUND='yellow'
 
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(status battery user dir vcs)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(time background_jobs ram virtualenv rbenv rvm)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(time virtualenv rbenv rvm)
 
 POWERLEVEL9K_SHORTEN_STRATEGY="truncate_middle"
 POWERLEVEL9K_SHORTEN_DIR_LENGTH=4
 
 POWERLEVEL9K_TIME_FORMAT="%D{\uf017 %H:%M}"
 
-POWERLEVEL9K_STATUS_VERBOSE=true
-
 POWERLEVEL9K_PROMPT_ON_NEWLINE=true
-############## END POWERLEVEL 9K ##############
+############# END POWERLEVEL 10K ##############
 
 PATH="/home/federico/perl5/bin${PATH:+:${PATH}}"; export PATH;
 PERL5LIB="/home/federico/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
