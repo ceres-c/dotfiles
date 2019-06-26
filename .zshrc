@@ -62,3 +62,6 @@ PERL5LIB="/home/federico/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5
 PERL_LOCAL_LIB_ROOT="/home/federico/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
 PERL_MB_OPT="--install_base \"/home/federico/perl5\""; export PERL_MB_OPT;
 PERL_MM_OPT="INSTALL_BASE=/home/federico/perl5"; export PERL_MM_OPT;
+
+source $HOME/dotfiles/.zpreztorc
+source /usr/lib/prezto/init.zsh
