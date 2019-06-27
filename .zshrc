@@ -20,13 +20,10 @@ function choosetheme()
 		source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 	else
 # Is this TTY?
-		ZSH_THEME=pygmalion
+		prompt giddie # Brutal, I know, but for the life of me I couldn't get it to work elsewhere
 	fi
 }
 ## End of choose theme
-
-bindkey '^[[3;5~' kill-word
-bindkey '^H' backward-kill-word
 
 choosetheme
 
