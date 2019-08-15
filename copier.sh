@@ -68,6 +68,6 @@ echo fs.inotify.max_user_watches=524288 | sudo tee /etc/sysctl.d/40-max-user-wat
 # MPV config for VAAPI
 if [ ! -d "$HOME/.config/mpv/" ]; then
     mkdir $HOME/.config/mpv/
-    fi
+fi
 echo "Please check if libva is installed"
 ln -sf $HOME/dotfiles/mpv.conf $HOME/.config/mpv/mpv.conf
