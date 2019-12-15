@@ -1,2 +1,4 @@
 # ST CR95HF
 SUBSYSTEM=="usb", ATTR{idVendor}=="0483", ATTR{idProduct}=="d0d0", MODE="0660", GROUP="federico"
+# Atmel ICE
+SUBSYSTEM=="usb", ATTR{idVendor}=="03eb", ATTR{idProduct}=="2141", MODE="0660", GROUP="federico"
