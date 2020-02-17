@@ -13,6 +13,7 @@ sudo ln -f ./77-pm3-usb-device-blacklist.rules /etc/udev/rules.d/77-pm3-usb-devi
 sudo ln -f ./93-pn53x.rules /etc/udev/rules.d/93-pn53x.rules					# PN532 based devices without sudo
 sudo ln -sf $HOME/dotfiles/modprobe.conf /etc/modprobe.d/modprobe.conf			# Modprobe offending pn533 modules + psmouse
 sudo ln -f ./vconsole.conf /etc/vconsole.conf									# Enable bigger font and italian keymap in vConsole
+sudo ln -f ./environment /etc/environment										# Global env vars
 sudo ln -f headphones_hissing.hook /etc/pacman.d/hooks/headphones_hissing.hook	# Pacman hook to fix XPS13 hissing headphones
 echo "[!] Don't forget to add /etc/modprobe.d/modprobe.conf to your /etc/mkinicpio.conf 'FILES' list"
 if sudo [ -d "/etc/nfc/" ]; then
@@ -49,7 +50,7 @@ ln -sf $HOME/dotfiles/nanorc $HOME/.config/nano/nanorc
 if [ ! -d "$HOME/.config/pip/" ]; then
 	mkdir $HOME/.config/pip/
 fi
-echo "You don't want to use pip with the --user switch anymore. Please do things the right way this time and fix this mess.\nAlso, remove the PYTHONPATH export in .zshrc"
+echo "[!] You don't want to use pip with the --user switch anymore. Please do things the right way this time and fix this mess.\nAlso, remove the PYTHONPATH export in .zshrc"
 ln -sf $HOME/dotfiles/pip.conf $HOME/.config/pip/pip.conf
 
 # Increase number of inotify watchers
@@ -59,5 +60,5 @@ echo fs.inotify.max_user_watches=524288 | sudo tee /etc/sysctl.d/40-max-user-wat
 if [ ! -d "$HOME/.config/mpv/" ]; then
     mkdir $HOME/.config/mpv/
 fi
-echo "Please check if libva is installed"
+echo "[#] Install `intel-media-driver` if not already done"
 ln -sf $HOME/dotfiles/mpv.conf $HOME/.config/mpv/mpv.conf
