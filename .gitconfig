@@ -4,7 +4,7 @@
 [credential]
 	helper = cache --timeout=3600
 [core]
-	pager = less
+	pager = less -+FX
 	editor = nano
 	excludesfile = /home/federico/dotfiles/.gitignore_global
 [filter "lfs"]
