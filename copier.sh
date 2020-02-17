@@ -11,9 +11,10 @@ sudo ln -f ./52-usb.rules /etc/udev/rules.d/52-usb.rules						# ST CR95HF NFC bo
 sudo ln -f ./70-persistent-net.rules /etc/udev/rules.d/70-persistent-net.rules	# For USB ethernet adapters
 sudo ln -f ./77-pm3-usb-device-blacklist.rules /etc/udev/rules.d/77-pm3-usb-device-blacklist.rules	# Proxmark3 ModemManager fix
 sudo ln -f ./93-pn53x.rules /etc/udev/rules.d/93-pn53x.rules					# PN532 based devices without sudo
-sudo ln -sf $HOME/dotfiles/blacklist.conf /etc/modprobe.d/blacklist.conf		# Modprobe offending pn533 modules + psmouse
+sudo ln -sf $HOME/dotfiles/modprobe.conf /etc/modprobe.d/modprobe.conf			# Modprobe offending pn533 modules + psmouse
 sudo ln -f ./vconsole.conf /etc/vconsole.conf									# Enable bigger font and italian keymap in vConsole
-echo "[!] Don't forget to add /etc/modprobe.d/blacklist.conf to your /etc/mkinicpio.conf 'FILES' list"
+sudo ln -f headphones_hissing.hook /etc/pacman.d/hooks/headphones_hissing.hook	# Pacman hook to fix XPS13 hissing headphones
+echo "[!] Don't forget to add /etc/modprobe.d/modprobe.conf to your /etc/mkinicpio.conf 'FILES' list"
 if sudo [ -d "/etc/nfc/" ]; then
 	sudo ln -sf $HOME/dotfiles/libnfc.conf /etc/nfc/libnfc.conf			# To allow scanning of USB-UART adapters
 else

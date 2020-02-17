@@ -1,0 +1,10 @@
+[Trigger]
+Operation = Install
+Operation = Upgrade
+Type = Package
+Target = pulseaudio
+
+[Action]
+Description = Set default Headphone Mic Boost volume to 1...
+When = PostTransaction
+Exec = /usr/bin/sed -i '/\[Element Headphone Mic Boost\]/,/^$/s/volume = .*/volume = 1/' /usr/share/pulseaudio/alsa-mixer/paths/analog-input-headphone-mic.conf
