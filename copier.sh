@@ -11,6 +11,8 @@ sudo ln -f ./52-usb.rules /etc/udev/rules.d/52-usb.rules						# ST CR95HF NFC bo
 sudo ln -f ./70-persistent-net.rules /etc/udev/rules.d/70-persistent-net.rules	# For USB ethernet adapters
 sudo ln -f ./77-pm3-usb-device-blacklist.rules /etc/udev/rules.d/77-pm3-usb-device-blacklist.rules	# Proxmark3 ModemManager fix
 sudo ln -f ./93-pn53x.rules /etc/udev/rules.d/93-pn53x.rules					# PN532 based devices without sudo
+sudo ln -sf $HOME/dotfiles/blacklist.conf /etc/modprobe.d/blacklist.conf		# Modprobe offending pn533 modules + psmouse
+echo "[!] Don't forget to add /etc/modprobe.d/blacklist.conf to your /etc/mkinicpio.conf 'FILES' list"
 if sudo [ -d "/etc/nfc/" ]; then
 	sudo ln -sf $HOME/dotfiles/libnfc.conf /etc/nfc/libnfc.conf			# To allow scanning of USB-UART adapters
 else
@@ -18,11 +20,6 @@ else
 fi
 sudo ln -sf $HOME/dotfiles/tlp /etc/default/tlp
 sudo ln -sf $HOME/dotfiles/intel-undervolt.conf /etc/intel-undervolt.conf		# Undervolt config for my XPS 13 9360
-if [ -f "/etc/modprobe.d/blacklist-libnfc.conf" ]; then
-	sudo ln -sf $HOME/dotfiles/blacklist-libnfc.conf /etc/modprobe.d/blacklist-libnfc.conf	# Modprobe offending pn533 modules
-else
-	echo "Libnfc blacklist rules not found. You might want to install libnfc first to avoid file collisions."
-fi
 
 # root user config
 sudo ln -sf $HOME/dotfiles/.tmux.conf /root/.tmux.conf
