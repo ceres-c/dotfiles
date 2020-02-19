@@ -5,12 +5,8 @@ for i in $(ls $HOME/dotfiles/nano); do
 done
 
 # System config
-sudo ln -f ./49-micronucleus.rules /etc/udev/rules.d/49-micronucleus.rules		# Micronucleus boards
-sudo ln -f ./50-usbtinyisp.rules /etc/udev/rules.d/50-usbtinyisp.rules			# To program atmel devices without sudo
-sudo ln -f ./52-usb.rules /etc/udev/rules.d/52-usb.rules						# ST CR95HF NFC board
+sudo ln -f ./52-usb.rules /etc/udev/rules.d/52-usb.rules						# All USB tty and alike devices rules
 sudo ln -f ./70-persistent-net.rules /etc/udev/rules.d/70-persistent-net.rules	# For USB ethernet adapters
-sudo ln -f ./77-pm3-usb-device-blacklist.rules /etc/udev/rules.d/77-pm3-usb-device-blacklist.rules	# Proxmark3 ModemManager fix
-sudo ln -f ./93-pn53x.rules /etc/udev/rules.d/93-pn53x.rules					# PN532 based devices without sudo
 sudo ln -sf $HOME/dotfiles/modprobe.conf /etc/modprobe.d/modprobe.conf			# Modprobe offending pn533 modules + psmouse
 sudo ln -f ./vconsole.conf /etc/vconsole.conf									# Enable bigger font and italian keymap in vConsole
 sudo ln -f ./environment /etc/environment										# Global env vars
