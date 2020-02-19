@@ -19,6 +19,7 @@ else
 fi
 sudo ln -sf $HOME/dotfiles/tlp /etc/default/tlp
 sudo ln -sf $HOME/dotfiles/intel-undervolt.conf /etc/intel-undervolt.conf		# Undervolt config for my XPS 13 9360
+sudo ln -f default.pa ~/.config/pulse/default.pa								# PulseAudio config to not fuck up with my docking station
 
 # root user config
 sudo ln -sf $HOME/dotfiles/.tmux.conf /root/.tmux.conf
