@@ -4,3 +4,4 @@
 # Syntax: simple "KEY=VAL" pairs on separate lines
 #
 LIBVA_DRIVER_NAME=iHD
+GTK_USE_PORTAL=1

@@ -1,11 +1,10 @@
 set tabsize 4
 set nowrap
-set smooth
 set autoindent
 set wordbounds
-set rawsequences
 
-bind    ^H    cutwordleft    main
+bind	^H	cutwordleft	main
+bind    ^]	cutwordleft	main
 
 include /usr/share/nano/texinfo.nanorc
 include /usr/share/nano/changelog.nanorc

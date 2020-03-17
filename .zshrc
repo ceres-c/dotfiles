@@ -16,17 +16,15 @@ alias rm='nocorrect rm'
 ## Choose theme based on emulator
 function choosetheme()
 {
-	if [ -n "${COLORTERM}" ]
-# Working in a colorful terminal
-	then
+	if [[ "${DISPLAY}" ]]; then
+		# Using a display compositor
 		source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 	else
-# Is this TTY?
-		prompt giddie # Brutal, I know, but for the life of me I couldn't get it to work elsewhere
+	# We're in TTY
+		prompt giddie # Brutal, I know, but for the life of me I couldn't get it to work in any other way
 	fi
 }
 ## End of choose theme
-
 
 bindkey '^[[3;5~' kill-word
 bindkey '^H' backward-kill-word
@@ -65,5 +63,5 @@ PERL_LOCAL_LIB_ROOT="/home/federico/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LI
 PERL_MB_OPT="--install_base \"/home/federico/perl5\""; export PERL_MB_OPT;
 PERL_MM_OPT="INSTALL_BASE=/home/federico/perl5"; export PERL_MM_OPT;
 
-source /home/federico/dotfiles/.zpreztorc
+source $HOME/.zpreztorc
 source /usr/lib/prezto/init.zsh

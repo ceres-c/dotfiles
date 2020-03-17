@@ -1,0 +1,61 @@
+# Configuration for Alacritty, the GPU enhanced terminal emulator.
+env:
+  WINIT_HIDPI_FACTOR: '1'
+
+window:
+  startup_mode: Maximized
+
+# Font configuration
+font:
+  normal:
+    family: SauceCodePro Nerd Font
+    style: Regular
+  bold:
+    family: SauceCodePro Nerd Font
+    style: SemiBold
+  italic:
+    family: SauceCodePro Nerd Font
+    style: Italic
+  bold_italic:
+    family: SauceCodePro Nerd Font
+    style: Semibold Italic
+  size: 15
+
+# Colors configuration
+colors:
+  primary:
+    background: '#31363b'
+    foreground: '#fcfcfc'
+
+  # Normal colors (I like them bright)
+  normal:
+    black:   '#31363b'
+    red:     '#ed1515'
+    green:   '#11d116'
+    yellow:  '#f67400'
+    blue:    '#1d99f3'
+    magenta: '#8e44ad'
+    cyan:    '#16a085'
+    white:   '#fcfcfc'
+
+  # Bright colors
+  bright:
+    black:   '#31363b'
+    red:     '#ed1515'
+    green:   '#11d116'
+    yellow:  '#f67400'
+    blue:    '#1d99f3'
+    magenta: '#8e44ad'
+    cyan:    '#16a085'
+    white:   '#fcfcfc'
+
+  # Dim colors will be calculated automatically based on the `normal` colors.
+
+#selection:
+  #semantic_escape_chars: ",│`|:\"' ()[]{}<>\t"
+
+  # When set to `true`, selected text will be copied to the primary clipboard.
+  #save_to_clipboard: false
+
+# Live config reload (changes require restart)
+#live_config_reload: true
