@@ -1,6 +1,9 @@
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
+export HISTFILE="$HOME/.zhistory"
+export HISTSIZE=100000000
+export SAVEHIST=100000000
 export FPATH=$HOME/dotfiles/zsh_autocomplete_rclone:$FPATH
 export PATH=$PATH:/home/federico/.local/bin:/home/federico/.gem/ruby/2.5.0/bin
 export VISUAL=nano
