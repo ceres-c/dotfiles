@@ -40,6 +40,7 @@ sudo ln -rsf .tmux /root/.tmux
 sudo ln -rsf .zshrc /root/.zshrc
 sudo ln -rsf .zpreztorc /root/.zpreztorc
 sudo ln -rsf .gitconfig /root/.gitconfig
+sudo ln -rsf .pam_environment /root/.pam_environment
 if sudo [ ! -d "/root/.config/nano/" ]; then
 	sudo mkdir /root/.config/nano/
 fi
@@ -59,6 +60,7 @@ ln -rsf .tmux $HOME/.tmux
 ln -rsf .zshrc $HOME/.zshrc
 ln -rsf .zpreztorc $HOME/.zpreztorc
 ln -rsf .gitconfig $HOME/.gitconfig
+ln -rsf .pam_environment /root/.pam_environment
 if [ ! -d "$HOME/.config/nano/" ]; then
 	mkdir $HOME/.config/nano/
 fi
