@@ -1,6 +1,7 @@
 [user]
 	name = Federico Cerutti
 	email = federico@ceres-c.it
+	signingkey = 2158A6BAD1D01529
 [credential]
 	helper = cache --timeout=3600
 [core]
