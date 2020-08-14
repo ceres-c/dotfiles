@@ -11,19 +11,22 @@ sudo ln -rsf 52-usb.rules /etc/udev/rules.d/52-usb.rules
 sudo ln -rsf 70-persistent-net.rules /etc/udev/rules.d/70-persistent-net.rules
 # Modprobe offending pn533 modules + psmouse
 sudo ln -rsf modprobe.conf /etc/modprobe.d/modprobe.conf
+echo "[!] Don't forget to add /etc/modprobe.d/modprobe.conf to your /etc/mkinicpio.conf 'FILES' list"
 # Enable bigger font and italian keymap in vConsole
 sudo ln -rsf vconsole.conf /etc/vconsole.conf
 # Global env vars
 sudo ln -rsf environment /etc/environment
 # Pacman hook to fix XPS13 hissing headphones
-sudo ln -rsf headphones_hissing.hook /usr/share/libalpm/hooks/headphones_hissing.hook
-echo "[!] Don't forget to add /etc/modprobe.d/modprobe.conf to your /etc/mkinicpio.conf 'FILES' list"
+ln -rsf headphones_hissing.service $HOME/.config/systemd/user/headphones_hissing.service
+systemctl --user enable ssh-agent.service
+# LibNFC settings
 if sudo [ -d "/etc/nfc/" ]; then
     # To allow scanning of USB-UART adapters
 	sudo ln -rsf libnfc.conf /etc/nfc/libnfc.conf
 else
 	echo "Libnfc does not seem to be installed. Install it and then run this script again"
 fi
+# TLP config
 sudo ln -rsf tlp /etc/default/tlp
 # Undervolt config for my XPS 13 9360
 sudo ln -rsf intel-undervolt.conf /etc/intel-undervolt.conf
@@ -31,7 +34,7 @@ sudo ln -rsf intel-undervolt.conf /etc/intel-undervolt.conf
 sudo ln -rsf resolv.conf.head /etc/resolv.conf.head
 # Terminator KDE ServiceMenu entry
 sudo ln -rsf openTerminatorHere.desktop /usr/share/kservices5/openTerminatorHere.desktop
-# Increase number of inotify watchers. Done with tee as echo was dropped privileges befor writing
+# Increase number of inotify watchers. Done with tee as echo was dropped privileges before writing
 echo fs.inotify.max_user_watches=524288 | sudo tee /etc/sysctl.d/40-max-user-watches.conf > /dev/null
 
 # root user config
