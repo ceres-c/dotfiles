@@ -60,7 +60,6 @@ ln -rsf .tmux $HOME/.tmux
 ln -rsf .zshrc $HOME/.zshrc
 ln -rsf .zpreztorc $HOME/.zpreztorc
 ln -rsf .gitconfig $HOME/.gitconfig
-ln -rsf .pam_environment /root/.pam_environment
 if [ ! -d "$HOME/.config/nano/" ]; then
 	mkdir $HOME/.config/nano/
 fi
@@ -74,15 +73,23 @@ ln -rsf pip.conf $HOME/.config/pip/pip.conf
 # Pacman hook to fix XPS13 hissing headphones
 ln -rsf headphones_hissing.service $HOME/.config/systemd/user/headphones_hissing.service
 systemctl --user enable headphones_hissing.service
-# start SSH agent on login
+# start ssh-agent on login
 ln -rsf ssh-agent.service $HOME/.config/systemd/user/ssh-agent.service
 systemctl --user enable ssh-agent.service
+# Enable ssg-agent as the default pam ssh auth service
+ln -rsf .pam_environment /root/.pam_environment
+
+if [ ! -d "$HOME/.config/keepassxc/" ]; then
+	mkdir $HOME/.config/keepassxc/
+fi
+ln -rsf keepassxc.ini $HOME/.config/keepassxc/keepassxc.ini
+echo "[#] Add relevant SSH keys to ssh-agent in KeepasXC's entry page"
 
 # MPV config for VAAPI
 if [ ! -d "$HOME/.config/mpv/" ]; then
     mkdir $HOME/.config/mpv/
 fi
-echo "[#] Install intel-media-driver if not already done"
 ln -rsf mpv.conf $HOME/.config/mpv/mpv.conf
+echo "[#] Install intel-media-driver if not already done"
 # Chromium config for VAAPI and HiDPI
 ln -rsf chromium-flags.conf $HOME/.config/chromium-flags.conf
