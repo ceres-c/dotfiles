@@ -5,3 +5,4 @@
 #
 LIBVA_DRIVER_NAME=iHD
 GTK_USE_PORTAL=1
+_JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on'

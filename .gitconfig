@@ -23,3 +23,5 @@
     cmd = code --wait --diff $LOCAL $REMOTE
 [url "ssh://git@github.com/"]
 	pushInsteadOf = https://github.com/
+[mergetool]
+	keepBackup = false

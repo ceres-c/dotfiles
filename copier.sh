@@ -16,9 +16,6 @@ echo "[!] Don't forget to add /etc/modprobe.d/modprobe.conf to your /etc/mkinicp
 sudo ln -rsf vconsole.conf /etc/vconsole.conf
 # Global env vars
 sudo ln -rsf environment /etc/environment
-# Pacman hook to fix XPS13 hissing headphones
-ln -rsf headphones_hissing.service $HOME/.config/systemd/user/headphones_hissing.service
-systemctl --user enable ssh-agent.service
 # LibNFC settings
 if sudo [ -d "/etc/nfc/" ]; then
     # To allow scanning of USB-UART adapters
@@ -74,6 +71,12 @@ fi
 echo "[!] You don't want to use pip with the --user switch anymore. Please do things the right way this time and fix this mess."
 echo "	Also, remove the PYTHONPATH export in .zshrc"
 ln -rsf pip.conf $HOME/.config/pip/pip.conf
+# Pacman hook to fix XPS13 hissing headphones
+ln -rsf headphones_hissing.service $HOME/.config/systemd/user/headphones_hissing.service
+systemctl --user enable headphones_hissing.service
+# start SSH agent on login
+ln -rsf ssh-agent.service $HOME/.config/systemd/user/ssh-agent.service
+systemctl --user enable ssh-agent.service
 
 # MPV config for VAAPI
 if [ ! -d "$HOME/.config/mpv/" ]; then
@@ -81,3 +84,5 @@ if [ ! -d "$HOME/.config/mpv/" ]; then
 fi
 echo "[#] Install intel-media-driver if not already done"
 ln -rsf mpv.conf $HOME/.config/mpv/mpv.conf
+# Chromium config for VAAPI and HiDPI
+ln -rsf chromium-flags.conf $HOME/.config/chromium-flags.conf
