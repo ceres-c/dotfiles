@@ -25,3 +25,5 @@
 	pushInsteadOf = https://github.com/
 [mergetool]
 	keepBackup = false
+[submodule]
+	recurse = true
