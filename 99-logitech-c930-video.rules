@@ -1,0 +1,1 @@
+SUBSYSTEM=="video4linux", ATTRS{idVendor}=="046d", ATTRS{idProduct}=="0843", RUN="/usr/bin/v4l2-ctl -d $devnode --set-ctrl=power_line_frequency=1 --set-ctrl=brightness=150"

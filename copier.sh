@@ -9,6 +9,8 @@ done
 sudo ln -rsf 52-usb.rules /etc/udev/rules.d/52-usb.rules
 # For USB ethernet adapters
 sudo ln -rsf 70-persistent-net.rules /etc/udev/rules.d/70-persistent-net.rules
+# Logitech c930 Webcam config applied on boot (brightness + power live frequency)
+sudo ln -rsf 99-logitech-c930-video.rules /etc/udev/rules.d/99-logitech-c930-video.rules
 # Modprobe offending pn533 modules + psmouse
 sudo ln -rsf modprobe.conf /etc/modprobe.d/modprobe.conf
 echo "[!] Don't forget to add /etc/modprobe.d/modprobe.conf to your /etc/mkinicpio.conf 'FILES' list"
