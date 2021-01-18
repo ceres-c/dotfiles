@@ -33,8 +33,10 @@ sudo ln -rsf intel-undervolt.conf /etc/intel-undervolt.conf
 sudo ln -rsf resolv.conf.head /etc/resolv.conf.head
 # Terminator KDE ServiceMenu entry
 sudo ln -rsf openTerminatorHere.desktop /usr/share/kservices5/openTerminatorHere.desktop
-# Increase number of inotify watchers. Done with tee as echo was dropped privileges before writing
-echo fs.inotify.max_user_watches=524288 | sudo tee /etc/sysctl.d/40-max-user-watches.conf > /dev/null
+# Increase number of inotify watchers.
+sudo ln -rsf 40-max-user-watches.conf /etc/sysctl.d/40-max-user-watches.conf
+# Restore old (possibly dangerous) dmesg nonroot behaviour
+sudo ln -rsf 51-dmesg-restrict.conf /etc/sysctl.d/51-dmesg-restrict.conf
 
 # root user config
 sudo ln -rsf .tmux.conf /root/.tmux.conf
