@@ -38,7 +38,8 @@ zstyle ':prezto:load' pmodule \
   'syntax-highlighting' \
   'history-substring-search' \
   'pacman' \
-  'prompt'
+  'prompt' \
+  'history'
 
 #
 # Autosuggestions
