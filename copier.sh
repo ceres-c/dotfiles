@@ -53,6 +53,8 @@ sudo ln -rsf nanorc /root/.config/nano/nanorc
 # Current user config
 # PulseAudio config to not fuck up with my docking station
 ln -rsf default.pa ~/.config/pulse/default.pa
+# Xorg config to unlock gnome-keyring used by vscode on login
+ln -rsf .xprofile $HOME/.xprofile
 # Miscellaneous user software
 if [ ! -d "$HOME/.config/terminator/" ]; then
 	mkdir $HOME/.config/terminator/
