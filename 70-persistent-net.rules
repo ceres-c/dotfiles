@@ -1,2 +1,0 @@
-# This rule forces Tecknet USB ethernet adaptor to name eth0
-ATTRS{idVendor}=="0bda", ATTRS{idProduct}=="8153", KERNEL=="eth*", NAME="eth0"
