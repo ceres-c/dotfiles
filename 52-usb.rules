@@ -42,6 +42,3 @@ ATTRS{idVendor}=="2d2d" ATTRS{idProduct}=="504d", ENV{ID_MM_DEVICE_IGNORE}="1"
 ATTRS{idVendor}=="9ac4" ATTRS{idProduct}=="4b8f", ENV{ID_MM_DEVICE_IGNORE}="1"
 ATTRS{idVendor}=="502d" ATTRS{idProduct}=="502d", ENV{ID_MM_DEVICE_IGNORE}="1"
 LABEL="pm3_usb_device_blacklist_end"
-
-# Bus pirate v3
-SUBSYSTEM=="tty", ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6001", GROUP="users", MODE="0666", SYMLINK+="buspirate"
