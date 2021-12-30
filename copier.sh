@@ -42,6 +42,8 @@ sudo ln -rsf 51-dmesg-restrict.conf /etc/sysctl.d/51-dmesg-restrict.conf
 sudo cp 49-rootpw_global.rules /etc/polkit-1/rules.d/49-rootpw_global.rules # Can't symlink this file as polkit wouldn't import the rule
 # Use traditional interface naming scheme
 sudo ln -rsf /dev/null /etc/udev/rules.d/80-net-setup-link.rules
+# Enable tap to click on all libinput devices
+sudo ln -rsf 70-touchpad.conf /etc/X11/xorg.conf.d/70-touchpad.conf
 
 # root user config
 sudo ln -rsf .tmux.conf /root/.tmux.conf
