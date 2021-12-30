@@ -5,12 +5,13 @@ export HISTFILE="$HOME/.zsh_history"
 export HISTSIZE=100000000
 export SAVEHIST=100000000
 export FPATH=$HOME/dotfiles/zsh_autocomplete_rclone:$FPATH
-export PATH=$PATH:/home/federico/.local/bin:/home/federico/.gem/ruby/2.7.0/bin
+export PATH=$PATH:$HOME/.local/bin:$HOME/.local/share/gem/ruby/3.0.0/bin
 export VISUAL=nano
 export EDITOR="$VISUAL"
 export ZSH_DISABLE_COMPFIX=true
 # The following export looks bad and should be a workaround, this should be fixed in a fresh install
 export PYTHONPATH="/usr/lib/python3.7/site-packages/"
+export npm_config_prefix="$HOME/.local"
 
 alias lschmod='ls -la | awk '\''{k=0;for(i=0;i<=8;i++)k+=((substr($1,i+2,1)~/[rwx]/)*2^(8-i));if(k)printf("%0o ",k);print}'\'
 alias l1="ls -1"
