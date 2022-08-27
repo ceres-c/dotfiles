@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Install required packages
-yay -S zsh-theme-powerlevel10k prezto-git nerd-fonts-source-code-pro ssh-agent-service gnome-keyring intel-media-driver
+yay -S zsh-theme-powerlevel10k prezto-git nerd-fonts-source-code-pro ssh-agent-service gnome-keyring intel-media-driver greetd greetd-tuigreet
 
 # Nano syntax highlight
 for i in $(ls nano); do
@@ -26,6 +26,9 @@ if sudo [ ! -d "/etc/nfc/" ]; then
 fi
 # To allow scanning of USB-UART adapters
 sudo ln -rsf libnfc.conf /etc/nfc/libnfc.conf
+# greetd config
+sudo ln -rsf greetd_config.toml /etc/greetd/config.toml
+echo "[#] Enable greetd.service"
 # TLP config
 sudo ln -rsf tlp /etc/default/tlp
 # Undervolt config for my XPS 13 9360
@@ -33,7 +36,7 @@ sudo ln -rsf intel-undervolt.conf /etc/intel-undervolt.conf
 # Prevent dhcpcd from overwriting Google DNS. As per https://wiki.archlinux.org/index.php/Dhcpcd#/etc/resolv.conf
 sudo ln -rsf resolv.conf.head /etc/resolv.conf.head
 # Terminator KDE ServiceMenu entry
-sudo ln -rsf openTerminatorHere.desktop /usr/share/kservices5/openTerminatorHere.desktop
+sudo cp openTerminatorHere.desktop /usr/share/kservices5/openTerminatorHere.desktop # Can't ln => Dolhpin gives 'not authorized' error
 # Increase number of inotify watchers.
 sudo ln -rsf 40-max-user-watches.conf /etc/sysctl.d/40-max-user-watches.conf
 # Restore old (possibly dangerous) dmesg nonroot behaviour
@@ -58,8 +61,6 @@ fi
 sudo ln -rsf nanorc /root/.config/nano/nanorc
 
 # Current user config
-# Xorg config to unlock gnome-keyring used by vscode on login
-ln -rsf .xprofile $HOME/.xprofile
 # Miscellaneous user software
 if [ ! -d "$HOME/.config/terminator/" ]; then
 	mkdir $HOME/.config/terminator/
@@ -82,12 +83,6 @@ fi
 echo "[!] You don't want to use pip with the --user switch anymore. Please do things the right way this time and fix this mess."
 echo "	Also, remove the PYTHONPATH export in .zshrc"
 ln -rsf pip.conf $HOME/.config/pip/pip.conf
-# Pacman hook to fix XPS13 hissing headphones
-if [ ! -d "$HOME/.config/systemd/user/" ]; then
-    mkdir -p $HOME/.config/systemd/user/
-fi
-ln -rsf headphones_hissing.service $HOME/.config/systemd/user/headphones_hissing.service
-systemctl --user enable headphones_hissing.service
 # start ssh-agent on login
 systemctl --user enable ssh-agent.service
 # Enable ssg-agent as the default pam ssh auth service
@@ -104,6 +99,5 @@ if [ ! -d "$HOME/.config/mpv/" ]; then
     mkdir $HOME/.config/mpv/
 fi
 ln -rsf mpv.conf $HOME/.config/mpv/mpv.conf
-echo "[#] Install intel-media-driver if not already done"
 # Chromium config for VAAPI and HiDPI
 ln -rsf chromium-flags.conf $HOME/.config/chromium-flags.conf

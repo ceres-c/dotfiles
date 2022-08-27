@@ -3,8 +3,7 @@ set nowrap
 set autoindent
 set wordbounds
 
-bind	^H	cutwordleft	main
-bind    ^]	cutwordleft	main
+bind ^H chopwordleft main
 
 include /usr/share/nano/texinfo.nanorc
 include /usr/share/nano/changelog.nanorc

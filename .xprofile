@@ -1,1 +1,0 @@
-eval $(/usr/bin/gnome-keyring-daemon --start --components=secrets)

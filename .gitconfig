@@ -27,3 +27,5 @@
 	keepBackup = false
 [submodule]
 	recurse = true
+[color]
+	ui = auto
