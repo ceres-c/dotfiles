@@ -28,6 +28,7 @@ fi
 sudo ln -rsf libnfc.conf /etc/nfc/libnfc.conf
 # greetd config
 sudo ln -rsf greetd_config.toml /etc/greetd/config.toml
+sudo ln -rsf greetd_pam /etc/pam.d/greetd
 echo "[#] Enable greetd.service"
 # TLP config
 sudo ln -rsf tlp /etc/default/tlp
