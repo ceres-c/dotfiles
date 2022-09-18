@@ -86,7 +86,7 @@ echo "	Also, remove the PYTHONPATH export in .zshrc"
 ln -rsf pip.conf $HOME/.config/pip/pip.conf
 # start ssh-agent on login
 systemctl --user enable ssh-agent.service
-# Enable ssg-agent as the default pam ssh auth service
+# Enable ssh-agent as the default pam ssh auth service
 sudo ln -rsf .pam_environment /root/.pam_environment
 
 if [ ! -d "$HOME/.config/keepassxc/" ]; then
@@ -102,3 +102,8 @@ fi
 ln -rsf mpv.conf $HOME/.config/mpv/mpv.conf
 # Chromium config for VAAPI and HiDPI
 ln -rsf chromium-flags.conf $HOME/.config/chromium-flags.conf
+# Spotifyd config and cache
+mkdir $HOME/.config/spotifyd
+mkdir $HOME/.cache/spotifyd
+ln -rsf spotifyd.conf $HOME/.config/spotifyd/spotifyd.conf
+sudo ln -rsf spot /usr/local/bin/spot # Convenient 2-line script to launch daemon and spotify-tui
