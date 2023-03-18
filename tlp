@@ -72,7 +72,7 @@ CPU_HWP_ON_BAT=balance_power
 # - This may conflict with your distribution's governor settings
 # - A value of 1 does *not* activate boosting, it just allows it
 CPU_BOOST_ON_AC=1
-CPU_BOOST_ON_BAT=0
+CPU_BOOST_ON_BAT=1
 
 # Minimize number of used CPU cores/hyper-threads under light load conditions
 SCHED_POWERSAVE_ON_AC=0
@@ -204,12 +204,7 @@ USB_AUTOSUSPEND=1
 # Exclude listed devices from USB autosuspend (separate with spaces).
 # Use lsusb to get the ids.
 # Note: input devices (usbhid) are excluded automatically
-# Following UIDs are:
-# * VIA Labs, Inc. VL813 Hub
-# * VIA Labs, Inc. Hub
-# * DisplayLink USB-C Triple-4K Dock
-# * SAVITECH Corp. SA9023 audio controller (DAC AUDIO)
-USB_BLACKLIST="2109:2813 2109:2210 17e9:6000 262a:9023"
+#USB_BLACKLIST=""
 
 # Bluetooth devices are excluded from USB autosuspend:
 #   0=do not exclude, 1=exclude
