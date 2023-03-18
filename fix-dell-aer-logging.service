@@ -1,0 +1,12 @@
+# Taken from https://gist.github.com/flisboac/5a0711201311b63d23b292110bb383cd
+[Unit]
+Description=Fix for AER's excessive logging for Dell power management
+After=systemd-modules-load.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/setpci -v -d 8086:1576 CAP_EXP+0x8.w=0x291e
+RemainAfterExit=yes
+
+[Install]
+WantedBy=sysinit.target

@@ -1,0 +1,5 @@
+# /dev/nvme0n1p1
+#ENV{ID_FS_UUID}=="40AA-9EF6", GROUP="win10disk"
+# /dev/nvme0n1p3
+#ENV{ID_FS_UUID}=="0CF6AB44F6AB2D40", GROUP="win10disk"
+ENV{ID_PART_TABLE_UUID}=="9497a347-1709-4e56-85a4-cd3eee195325", GROUP="win10disk"

@@ -48,6 +48,15 @@ sudo cp 49-rootpw_global.rules /etc/polkit-1/rules.d/49-rootpw_global.rules # Ca
 sudo ln -rsf /dev/null /etc/udev/rules.d/80-net-setup-link.rules
 # Enable tap to click on all libinput devices
 sudo ln -rsf 70-touchpad.conf /etc/X11/xorg.conf.d/70-touchpad.conf
+# Allow access to win10 disk for VirtualBox emulation
+sudo ln -rsf 99-win10disk.rules /etc/udev/rules.d/99-win10disk.rules
+# Configure hidzis-s9pro DAC alsa profile
+sudo ln -rsf hidizs-s9pro.conf /usr/share/alsa-card-profile/mixer/profile-sets/hidizs-s9pro.conf
+sudo ln -rsf hidizs-s9pro.rules /etc/udev/rules.d/hidizs-s9pro.rules
+
+# Disable AER logging for Dell powersave when using my PCI dock
+sudo ln -rsf fix-dell-aer-logging.service /etc/systemd/system/fix-dell-aer-logging.service
+sudo systemctl enable fix-dell-aer-logging.service
 
 # root user config
 sudo ln -rsf .tmux.conf /root/.tmux.conf
@@ -84,6 +93,7 @@ fi
 echo "[!] You don't want to use pip with the --user switch anymore. Please do things the right way this time and fix this mess."
 echo "	Also, remove the PYTHONPATH export in .zshrc"
 ln -rsf pip.conf $HOME/.config/pip/pip.conf
+#ln -rsf vars.sh $HOME/.config/plasma-workspace/env/vars.sh # Plasma env vars (disabled as it slows down A LOT plastma startup)
 # start ssh-agent on login
 systemctl --user enable ssh-agent.service
 # Enable ssh-agent as the default pam ssh auth service
