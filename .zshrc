@@ -9,9 +9,11 @@ export PATH=$PATH:$HOME/.local/bin:$HOME/.local/share/gem/ruby/3.0.0/bin
 export VISUAL=nano
 export EDITOR="$VISUAL"
 export ZSH_DISABLE_COMPFIX=true
+export QT_QPA_PLATFORM=xcb # Fix for some QT applications in Wayland
 # The following export looks bad and should be a workaround, this should be fixed in a fresh install
 export PYTHONPATH="/usr/lib/python3.7/site-packages/"
 export npm_config_prefix="$HOME/.local"
+export DOCKER_HOST=unix://$XDG_RUNTIME_DIR/docker.sock # Docker rootless
 
 alias lschmod='ls -la | awk '\''{k=0;for(i=0;i<=8;i++)k+=((substr($1,i+2,1)~/[rwx]/)*2^(8-i));if(k)printf("%0o ",k);print}'\'
 alias l1="ls -1"
