@@ -53,10 +53,8 @@ sudo ln -rsf 99-win10disk.rules /etc/udev/rules.d/99-win10disk.rules
 # Configure hidzis-s9pro DAC alsa profile
 sudo ln -rsf hidizs-s9pro.conf /usr/share/alsa-card-profile/mixer/profile-sets/hidizs-s9pro.conf
 sudo ln -rsf hidizs-s9pro.rules /etc/udev/rules.d/hidizs-s9pro.rules
-
 # Disable AER logging for Dell powersave when using my PCI dock
-sudo ln -rsf fix-dell-aer-logging.service /etc/systemd/system/fix-dell-aer-logging.service
-sudo systemctl enable fix-dell-aer-logging.service
+sudo ln -rsf 80-fix-dell-aer-logging.rules /etc/udev/rules.d/80-fix-dell-aer-logging.rules
 
 # root user config
 sudo ln -rsf .tmux.conf /root/.tmux.conf

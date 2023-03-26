@@ -1,0 +1,1 @@
+SUBSYSTEM=="pci", ATTRS{vendor}=="0x8086", ATTRS{device}=="0x1576", RUN+="/usr/bin/setpci -v -d 8086:1576 CAP_EXP+0x8.w=0x291e"
