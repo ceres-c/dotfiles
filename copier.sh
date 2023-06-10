@@ -110,6 +110,8 @@ fi
 ln -rsf mpv.conf $HOME/.config/mpv/mpv.conf
 # Chromium config for VAAPI and HiDPI
 ln -rsf chromium-flags.conf $HOME/.config/chromium-flags.conf
+# Firefox KDE MIME associations
+ln -rsf $HOME/.config/mimeapps.list $HOME/.local/share/applications/mimeapps.list
 # Spotifyd config and cache
 mkdir $HOME/.config/spotifyd
 mkdir $HOME/.cache/spotifyd
