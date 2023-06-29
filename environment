@@ -3,6 +3,8 @@
 #
 # Syntax: simple "KEY=VAL" pairs on separate lines
 #
+QT_QPA_PLATFORM="wayland;xcb"
+MOZ_ENABLE_WAYLAND=1
 LIBVA_DRIVER_NAME=iHD
 GTK_USE_PORTAL=1
 _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on'

@@ -112,8 +112,6 @@ ln -rsf mpv.conf $HOME/.config/mpv/mpv.conf
 ln -rsf chromium-flags.conf $HOME/.config/chromium-flags.conf
 # Firefox KDE MIME associations
 ln -rsf $HOME/.config/mimeapps.list $HOME/.local/share/applications/mimeapps.list
-# Various KDE env vars
-ln -rsf graph_env.sh $HOME/.config/plasma-workspace/env/graph_env.sh
 # Spotifyd config and cache
 mkdir $HOME/.config/spotifyd
 mkdir $HOME/.cache/spotifyd
