@@ -11,7 +11,6 @@ export EDITOR="$VISUAL"
 export ZSH_DISABLE_COMPFIX=true
 export QT_QPA_PLATFORM=xcb # Fix for some QT applications in Wayland
 # The following export looks bad and should be a workaround, this should be fixed in a fresh install
-export PYTHONPATH="/usr/lib/python3.7/site-packages/"
 export npm_config_prefix="$HOME/.local"
 export DOCKER_HOST=unix://$XDG_RUNTIME_DIR/docker.sock # Docker rootless
 

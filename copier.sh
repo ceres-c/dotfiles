@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Install required packages
-yay -S zsh-theme-powerlevel10k prezto-git nerd-fonts-source-code-pro ssh-agent-service gnome-keyring intel-media-driver greetd greetd-tuigreet
+yay -S zsh-theme-powerlevel10k prezto-git nerd-fonts-source-code-pro intel-media-driver greetd greetd-tuigreet
 
 # Nano syntax highlight
 for i in $(ls nano); do
@@ -85,17 +85,11 @@ if [ ! -d "$HOME/.config/nano/" ]; then
 	mkdir $HOME/.config/nano/
 fi
 ln -rsf nanorc $HOME/.config/nano/nanorc
-if [ ! -d "$HOME/.config/pip/" ]; then
-	mkdir $HOME/.config/pip/
-fi
-echo "[!] You don't want to use pip with the --user switch anymore. Please do things the right way this time and fix this mess."
-echo "	Also, remove the PYTHONPATH export in .zshrc"
-ln -rsf pip.conf $HOME/.config/pip/pip.conf
 #ln -rsf vars.sh $HOME/.config/plasma-workspace/env/vars.sh # Plasma env vars (disabled as it slows down A LOT plastma startup)
 # start ssh-agent on login
 systemctl --user enable ssh-agent.service
 # Enable ssh-agent as the default pam ssh auth service
-sudo ln -rsf .pam_environment /root/.pam_environment
+sudo ln -rsf ssh_auth_sock.sh /etc/profile.d/ssh_auth_sock.sh
 
 if [ ! -d "$HOME/.config/keepassxc/" ]; then
 	mkdir $HOME/.config/keepassxc/
