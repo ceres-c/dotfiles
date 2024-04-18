@@ -36,8 +36,6 @@ sudo ln -rsf tlp /etc/default/tlp
 sudo ln -rsf intel-undervolt.conf /etc/intel-undervolt.conf
 # Prevent dhcpcd from overwriting Google DNS. As per https://wiki.archlinux.org/index.php/Dhcpcd#/etc/resolv.conf
 sudo ln -rsf resolv.conf.head /etc/resolv.conf.head
-# Terminator KDE ServiceMenu entry
-sudo cp openTerminatorHere.desktop /usr/share/kservices5/openTerminatorHere.desktop # Can't ln => Dolhpin gives 'not authorized' error
 # Increase number of inotify watchers.
 sudo ln -rsf 40-max-user-watches.conf /etc/sysctl.d/40-max-user-watches.conf
 # Restore old (possibly dangerous) dmesg nonroot behaviour
@@ -70,11 +68,7 @@ sudo ln -rsf nanorc /root/.config/nano/nanorc
 
 # Current user config
 # Miscellaneous user software
-if [ ! -d "$HOME/.config/terminator/" ]; then
-	mkdir $HOME/.config/terminator/
-fi
 ln -rsf kwalletrc $HOME/.config/kwalletrc # Disable kwallet popups
-ln -rsf terminator.conf $HOME/.config/terminator/config
 ln -rsf alacritty.yml $HOME/.alacritty.yml
 ln -rsf .tmux.conf $HOME/.tmux.conf
 ln -rsf .tmux $HOME/.tmux
