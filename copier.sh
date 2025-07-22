@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if [ "$(uname)" == "Darwin" ]; then
-	brew install nano tmux powerlevel10k
+	brew install nano tmux powerlevel10k font-sauce-code-pro-nerd-font
 	hash -r
 	git clone --recursive https://github.com/sorin-ionescu/prezto.git "${HOME}/.zprezto"
 
