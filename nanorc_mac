@@ -1,0 +1,6 @@
+set tabsize 4
+set nowrap
+set autoindent
+set wordbounds
+
+include "/opt/homebrew/share/nano/*.nanorc"

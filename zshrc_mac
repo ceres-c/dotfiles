@@ -1,0 +1,45 @@
+source $HOMEBREW_PREFIX/share/powerlevel10k/powerlevel10k.zsh-theme
+export HISTFILE="$HOME/.zsh_history"
+export HISTSIZE=100000000
+export SAVEHIST=100000000
+export FPATH=$HOME/dotfiles/zsh_autocomplete_rclone:$FPATH
+export VISUAL=nano
+export EDITOR="$VISUAL"
+export ZSH_DISABLE_COMPFIX=true
+export PATH=/opt/homebrew/opt/python/libexec/bin/:$PATH
+alias lschmod='ls -la | awk '\''{k=0;for(i=0;i<=8;i++)k+=((substr($1,i+2,1)~/[rwx]/)*2^(8-i));if(k)printf("%0o ",k);print}'\'
+alias l1="ls -1"
+alias la="ls -la"
+alias rm='nocorrect rm'
+
+bindkey "<ESC>f" forward-word
+bindkey "<ESC>b" backward-word
+
+############### POWERLEVEL 10K ################
+POWERLEVEL9K_MODE='nerdfont-complete'
+
+POWERLEVEL9K_BATTERY_VERBOSE=false
+POWERLEVEL9K_BATTERY_CHARGING='yellow'
+POWERLEVEL9K_BATTERY_CHARGED='green'
+POWERLEVEL9K_BATTERY_DISCONNECTED='$DEFAULT_COLOR'
+POWERLEVEL9K_BATTERY_LOW_THRESHOLD='25'
+POWERLEVEL9K_BATTERY_LOW_COLOR='red'
+POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX=''
+POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX='\uf0da'
+
+POWERLEVEL9K_VCS_MODIFIED_BACKGROUND='yellow'
+POWERLEVEL9K_VCS_UNTRACKED_BACKGROUND='yellow'
+
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(status user dir vcs)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(time virtualenv)
+
+POWERLEVEL9K_SHORTEN_STRATEGY="truncate_middle"
+POWERLEVEL9K_SHORTEN_DIR_LENGTH=4
+
+POWERLEVEL9K_TIME_FORMAT="%D{%H:%M}"
+
+POWERLEVEL9K_PROMPT_ON_NEWLINE=true
+############# END POWERLEVEL 10K ##############
+
+source ${HOME}/.zpreztorc
+source ${HOME}/.zprezto/init.zsh
