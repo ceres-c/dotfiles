@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if [ "$(uname)" == "Darwin" ]; then
-	brew install nano tmux powerlevel10k font-sauce-code-pro-nerd-font
+	brew install nano tmux powerlevel10k font-sauce-code-pro-nerd-font maccy
 	hash -r
 	git clone --recursive https://github.com/sorin-ionescu/prezto.git "${HOME}/.zprezto"
 
@@ -11,6 +11,12 @@ if [ "$(uname)" == "Darwin" ]; then
 	ln -sf $HOME/dotfiles/.gitconfig $HOME/.gitconfig
 	ln -sf $HOME/dotfiles/zshrc_mac $HOME/.zshrc
 	ln -sf $HOME/dotfiles/nanorc_mac $HOME/.nanorc
+
+	defaults write -g InitialKeyRepeat -int 10
+	defaults write -g KeyRepeat -int 3
+	defaults write com.apple.finder AppleShowAllFiles YES
+	sudo defaults write com.apple.Safari WBSNewTabPositionPreferenceKey -int 0
+	sudo defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2BackspaceKeyNavigationEnabled -bool YES
 else
 	# Install required packages
 	yay -S zsh-theme-powerlevel10k prezto-git nerd-fonts-source-code-pro intel-media-driver greetd greetd-tuigreet
