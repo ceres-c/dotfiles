@@ -23,6 +23,11 @@ config.keys = {
     mods = 'SUPER|SHIFT',
     action = wezterm.action.SplitHorizontal { domain = 'CurrentPaneDomain' },
   },
+  {
+    key = 't',
+    mods = 'SUPER|SHIFT',
+    action = wezterm.action.SpawnTab 'CurrentPaneDomain',
+  },
   -- Move between panes
   {
     key = 'UpArrow',
