@@ -7,6 +7,16 @@ export VISUAL=nano
 export EDITOR="$VISUAL"
 export ZSH_DISABLE_COMPFIX=true
 export PATH=/opt/homebrew/opt/python/libexec/bin/:$PATH
+export LANG="en_US.UTF-8"
+export LC_ADDRESS=it_IT.UTF-8
+export LC_COLLATE=it_IT.UTF-8
+export LC_MEASUREMENT=it_IT.UTF-8
+export LC_MONETARY=it_IT.UTF-8
+export LC_NAME=it_IT.UTF-8
+export LC_NUMERIC=it_IT.UTF-8
+export LC_PAPER=C
+export LC_TELEPHONE=it_IT.UTF-8
+export LC_TIME=C
 alias lschmod='ls -la | awk '\''{k=0;for(i=0;i<=8;i++)k+=((substr($1,i+2,1)~/[rwx]/)*2^(8-i));if(k)printf("%0o ",k);print}'\'
 alias l1="ls -1"
 alias la="ls -la"
