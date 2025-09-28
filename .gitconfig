@@ -29,3 +29,5 @@
 	recurse = true
 [color]
 	ui = auto
+[pull]
+	ff = only
