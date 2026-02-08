@@ -53,3 +53,6 @@ POWERLEVEL9K_PROMPT_ON_NEWLINE=true
 
 source ${HOME}/.zpreztorc
 source ${HOME}/.zprezto/init.zsh
+
+# Added by Antigravity
+export PATH="/Users/ceres/.antigravity/antigravity/bin:$PATH"

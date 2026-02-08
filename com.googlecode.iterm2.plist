@@ -2,16 +2,28 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>AppleAntiAliasingThreshold</key>
-	<integer>1</integer>
-	<key>ApplePressAndHoldEnabled</key>
-	<false/>
-	<key>AppleScrollAnimationEnabled</key>
+	<key>AIFeatureFunctionCalling</key>
+	<true/>
+	<key>AIFeatureHostedCodeInterpeter</key>
+	<true/>
+	<key>AIFeatureHostedFileSearch</key>
+	<true/>
+	<key>AIFeatureHostedWebSearch</key>
+	<true/>
+	<key>AIFeatureStreamingResponses</key>
+	<true/>
+	<key>AITermAPI</key>
+	<integer>2</integer>
+	<key>AIVectorStore</key>
 	<integer>0</integer>
-	<key>AppleSmoothFixedFontsSizeThreshold</key>
-	<integer>1</integer>
-	<key>AppleWindowTabbingMode</key>
-	<string>manual</string>
+	<key>AiMaxTokens</key>
+	<integer>400000</integer>
+	<key>AiModel</key>
+	<string>gpt-5.1</string>
+	<key>AiResponseMaxTokens</key>
+	<integer>128000</integer>
+	<key>AitermURL</key>
+	<string>https://api.openai.com/v1/responses</string>
 	<key>CopySelection</key>
 	<false/>
 	<key>Custom Color Presets</key>
@@ -373,7 +385,7 @@
 			<key>Text</key>
 			<string></string>
 		</dict>
-		<key>0x45-0x120000-0xe</key>
+		<key>0x65-0x180000-0xe</key>
 		<dict>
 			<key>Action</key>
 			<integer>29</integer>
@@ -386,7 +398,7 @@
 			<key>Version</key>
 			<integer>2</integer>
 		</dict>
-		<key>0x4f-0x120000-0x1f</key>
+		<key>0x6f-0x180000-0x1f</key>
 		<dict>
 			<key>Action</key>
 			<integer>28</integer>
@@ -399,7 +411,7 @@
 			<key>Version</key>
 			<integer>2</integer>
 		</dict>
-		<key>0x54-0x120000-0x11</key>
+		<key>0x74-0x180000-0x11</key>
 		<dict>
 			<key>Action</key>
 			<integer>27</integer>
@@ -419,7 +431,7 @@
 			<key>Text</key>
 			<string></string>
 		</dict>
-		<key>0xf700-0x320000-0x7e</key>
+		<key>0xf700-0x220000-0x7e</key>
 		<dict>
 			<key>Action</key>
 			<integer>20</integer>
@@ -432,7 +444,20 @@
 			<key>Version</key>
 			<integer>2</integer>
 		</dict>
-		<key>0xf701-0x320000-0x7d</key>
+		<key>0xf700-0x2a0000-0x7e</key>
+		<dict>
+			<key>Action</key>
+			<integer>50</integer>
+			<key>Apply Mode</key>
+			<integer>0</integer>
+			<key>Escaping</key>
+			<integer>2</integer>
+			<key>Text</key>
+			<string></string>
+			<key>Version</key>
+			<integer>2</integer>
+		</dict>
+		<key>0xf701-0x220000-0x7d</key>
 		<dict>
 			<key>Action</key>
 			<integer>21</integer>
@@ -445,7 +470,20 @@
 			<key>Version</key>
 			<integer>2</integer>
 		</dict>
-		<key>0xf702-0x320000-0x7b</key>
+		<key>0xf701-0x2a0000-0x7d</key>
+		<dict>
+			<key>Action</key>
+			<integer>49</integer>
+			<key>Apply Mode</key>
+			<integer>0</integer>
+			<key>Escaping</key>
+			<integer>2</integer>
+			<key>Text</key>
+			<string></string>
+			<key>Version</key>
+			<integer>2</integer>
+		</dict>
+		<key>0xf702-0x220000-0x7b</key>
 		<dict>
 			<key>Action</key>
 			<integer>18</integer>
@@ -458,10 +496,36 @@
 			<key>Version</key>
 			<integer>2</integer>
 		</dict>
-		<key>0xf703-0x320000-0x7c</key>
+		<key>0xf702-0x2a0000-0x7b</key>
+		<dict>
+			<key>Action</key>
+			<integer>51</integer>
+			<key>Apply Mode</key>
+			<integer>0</integer>
+			<key>Escaping</key>
+			<integer>2</integer>
+			<key>Text</key>
+			<string></string>
+			<key>Version</key>
+			<integer>2</integer>
+		</dict>
+		<key>0xf703-0x220000-0x7c</key>
 		<dict>
 			<key>Action</key>
 			<integer>19</integer>
+			<key>Apply Mode</key>
+			<integer>0</integer>
+			<key>Escaping</key>
+			<integer>2</integer>
+			<key>Text</key>
+			<string></string>
+			<key>Version</key>
+			<integer>2</integer>
+		</dict>
+		<key>0xf703-0x2a0000-0x7c</key>
+		<dict>
+			<key>Action</key>
+			<integer>52</integer>
 			<key>Apply Mode</key>
 			<integer>0</integer>
 			<key>Escaping</key>
@@ -533,6 +597,18 @@
 			<true/>
 			<key>ASCII Ligatures</key>
 			<false/>
+			<key>AWDS Pane Directory</key>
+			<string></string>
+			<key>AWDS Pane Option</key>
+			<string>Recycle</string>
+			<key>AWDS Tab Directory</key>
+			<string></string>
+			<key>AWDS Tab Option</key>
+			<string>Recycle</string>
+			<key>AWDS Window Directory</key>
+			<string></string>
+			<key>AWDS Window Option</key>
+			<string>No</string>
 			<key>Ambiguous Double Width</key>
 			<false/>
 			<key>Ansi 0 Color</key>
@@ -1412,7 +1488,7 @@
 			<key>Custom Command</key>
 			<string>No</string>
 			<key>Custom Directory</key>
-			<string>No</string>
+			<string>Advanced</string>
 			<key>Default Bookmark</key>
 			<string>No</string>
 			<key>Description</key>
@@ -1737,6 +1813,10 @@
 			<string>/Users/ceres</string>
 		</dict>
 	</array>
+	<key>PMPrintingPanelSize</key>
+	<string>{780, 832}</string>
+	<key>PasteTabToStringTabStopSize</key>
+	<integer>4</integer>
 	<key>PointerActions</key>
 	<dict>
 		<key>Button,1,1,,</key>
@@ -1774,13 +1854,21 @@
 			<string>kNextWindowPointerAction</string>
 		</dict>
 	</dict>
+	<key>Print In Black And White</key>
+	<true/>
 	<key>QuitWhenAllWindowsClosed</key>
 	<true/>
 	<key>SoundForEsc</key>
 	<false/>
 	<key>SplitPaneDimmingAmount</key>
 	<real>0.25465853658536586</real>
+	<key>TerminalMargin</key>
+	<integer>6</integer>
+	<key>TerminalVMargin</key>
+	<integer>3</integer>
 	<key>ThreeFingerEmulates</key>
+	<true/>
+	<key>UseLionStyleFullscreen</key>
 	<true/>
 	<key>VisualIndicatorForEsc</key>
 	<false/>

@@ -15,8 +15,10 @@ if [ "$(uname)" == "Darwin" ]; then
 	defaults write -g InitialKeyRepeat -int 10
 	defaults write -g KeyRepeat -int 3
 	defaults write com.apple.finder AppleShowAllFiles YES
+	defaults write com.apple.dock workspaces-edge-delay -float 0.1 # Make windows snap to grid faster
 	sudo defaults write com.apple.Safari WBSNewTabPositionPreferenceKey -int 0
 	sudo defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2BackspaceKeyNavigationEnabled -bool YES
+	sudo nvram BootPreference=%00 # Prevent autoboot on lid open/power connect
 else
 	# Install required packages
 	yay -S zsh-theme-powerlevel10k prezto-git nerd-fonts-source-code-pro intel-media-driver greetd greetd-tuigreet
