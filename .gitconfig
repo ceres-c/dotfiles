@@ -31,3 +31,7 @@
 	ui = auto
 [pull]
 	ff = only
+[safe]
+	directory = *
+[push]
+	default = current

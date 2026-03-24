@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if [ "$(uname)" == "Darwin" ]; then
-	brew install nano tmux powerlevel10k font-sauce-code-pro-nerd-font maccy
+	brew install nano htop tmux powerlevel10k font-sauce-code-pro-nerd-font maccy
 	hash -r
 	git clone --recursive https://github.com/sorin-ionescu/prezto.git "${HOME}/.zprezto"
 
@@ -12,6 +12,10 @@ if [ "$(uname)" == "Darwin" ]; then
 	ln -sf $HOME/dotfiles/zshrc_mac $HOME/.zshrc
 	ln -sf $HOME/dotfiles/nanorc_mac $HOME/.nanorc
 
+	defaults write -g com.apple.mouse.scaling 1.5 # Touchpad speed
+	defaults write -g com.apple.swipescrolldirection -bool false # Touchpad scrolling direction
+	defaults write -g com.apple.mouse.tapBehavior -int 1 # Enable tap to click
+	defaults write -g com.apple.keyboard.fnState -bool true
 	defaults write -g InitialKeyRepeat -int 10
 	defaults write -g KeyRepeat -int 3
 	defaults write com.apple.finder AppleShowAllFiles YES
