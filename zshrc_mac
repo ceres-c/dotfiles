@@ -1,3 +1,4 @@
+export HOMEBREW_PREFIX="/opt/homebrew"
 source $HOMEBREW_PREFIX/share/powerlevel10k/powerlevel10k.zsh-theme
 export HISTFILE="$HOME/.zsh_history"
 export HISTSIZE=100000000
@@ -56,3 +57,6 @@ source ${HOME}/.zprezto/init.zsh
 
 # Added by Antigravity
 export PATH="/Users/ceres/.antigravity/antigravity/bin:$PATH"
+
+# Prefer brew tools
+export PATH=$(brew --prefix)/bin:$PATH
