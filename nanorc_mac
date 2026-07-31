@@ -3,7 +3,7 @@ set nowrap
 set autoindent
 set wordbounds
 
-include "/opt/homebrew/share/nano/*.nanorc"
+include "/opt/brew/share/nano/*.nanorc"
 
 bind M-F nextword main
 bind M-B prevword main
