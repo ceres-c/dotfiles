@@ -40,3 +40,6 @@ Thumbs.db
 #########################
 .vscode
 __pycache__
+
+# Claude Code local state (settings.local.json etc. are per-machine)
+**/.claude
