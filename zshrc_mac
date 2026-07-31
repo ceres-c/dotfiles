@@ -157,6 +157,44 @@ if [[ "$TERM_PROGRAM" == "vscode" ]]; then
     : ${USER_ZDOTDIR:=$HOME}
     unset VSCODE_SHELL_INTEGRATION VSCODE_INJECTION
     source "$_vsc_si_path"
+
+    # Swallow the ONE spurious "command finished" mark (OSC 633;D) that the
+    # script's start-up precmd always emits.
+    #
+    # __vsc_precmd -> __vsc_command_complete runs unconditionally on the first
+    # prompt. Upstream that is harmless: the script is sourced BEFORE the user's
+    # rc files, so the stray D is flushed within a millisecond, long before any
+    # command can be submitted. Here it is sourced at the END of this file --
+    # after prezto + p10k, i.e. ~300ms in -- so on a fresh shell the D arrives
+    # AFTER an automated client (Copilot's terminal tool) has already submitted
+    # its first command. VS Code attributes that D to the running command and
+    # reports it finished instantly, while it is in fact still executing.
+    # Measured: command submitted t=0.00s, stray D at t=+0.28s, real completion
+    # t=+17.25s. Only ever affects the first command of a fresh shell.
+    #
+    # The wrapper CANNOT be installed here. In the injected path this file is
+    # itself sourced from the middle of VS Code's script, so the source above is
+    # a nested, second load; once it returns, the OUTER script keeps going and
+    # redefines __vsc_command_complete, wiping anything installed at this point.
+    # (Tell-tale: \e]633;P;HasRichCommandDetection is emitted twice.)
+    # So defer installation to the first precmd, which runs after all sourcing
+    # is done, and PREPEND it to precmd_functions -- __vsc_precmd is already in
+    # that array, and a later add-zsh-hook would place us after it, i.e. after
+    # the stray D had already gone out.
+    __vsc_drop_startup_d() {
+      if (( $+functions[__vsc_command_complete] )); then
+        functions[__vsc_command_complete_orig]=$functions[__vsc_command_complete]
+        # Drop this one D but keep its Cwd bookkeeping. Every later D -- the ones
+        # that actually terminate a command -- passes through untouched.
+        __vsc_command_complete() {
+          functions[__vsc_command_complete]=$functions[__vsc_command_complete_orig]
+          __vsc_update_cwd
+        }
+      fi
+      precmd_functions=(${precmd_functions:#__vsc_drop_startup_d})
+      unfunction __vsc_drop_startup_d
+    }
+    precmd_functions=(__vsc_drop_startup_d $precmd_functions)
   fi
   unset _vsc_si_path
 fi
