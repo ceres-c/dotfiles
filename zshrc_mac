@@ -6,7 +6,18 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 ############### ENVIRONMENT ################
-export HOMEBREW_PREFIX="/opt/brew"
+# The prefix differs per machine: /opt/homebrew on Apple silicon, /opt/brew
+# where a custom prefix was used, /usr/local on stock Intel. Probe for it
+# rather than calling `brew --prefix`: the latter forks a Ruby/bash script on
+# every single shell startup. First hit wins, so keep the list most-specific
+# first (/usr/local exists everywhere, but only holds brew on stock Intel).
+for _brew_prefix in /opt/homebrew /opt/brew /usr/local; do
+  if [[ -x "$_brew_prefix/bin/brew" ]]; then
+    export HOMEBREW_PREFIX="$_brew_prefix"
+    break
+  fi
+done
+unset _brew_prefix
 export HISTFILE="$HOME/.zsh_history"
 export HISTSIZE=100000000
 export SAVEHIST=100000000
@@ -26,10 +37,10 @@ export LC_TELEPHONE=it_IT.UTF-8
 export LC_TIME=C
 
 ############### PATH ################
-# Use $HOMEBREW_PREFIX instead of `brew --prefix`: the latter forks a Ruby/bash
-# script on every single shell startup.
-export PATH="$HOMEBREW_PREFIX/bin:$PATH"
-export PATH="$HOMEBREW_PREFIX/opt/python/libexec/bin:$PATH"
+if [[ -n "$HOMEBREW_PREFIX" ]]; then
+  export PATH="$HOMEBREW_PREFIX/bin:$PATH"
+  export PATH="$HOMEBREW_PREFIX/opt/python/libexec/bin:$PATH"
+fi
 
 # Added by Antigravity (guarded: the original hardcoded /Users/ceres path is
 # for a different user account and does not exist here).
@@ -82,7 +93,13 @@ typeset -g POWERLEVEL9K_TIME_FORMAT="%D{%H:%M}"
 
 typeset -g POWERLEVEL9K_PROMPT_ON_NEWLINE=true
 
-source "$HOMEBREW_PREFIX/share/powerlevel10k/powerlevel10k.zsh-theme"
+_p10k_theme="$HOMEBREW_PREFIX/share/powerlevel10k/powerlevel10k.zsh-theme"
+if [[ -r "$_p10k_theme" ]]; then
+  source "$_p10k_theme"
+else
+  print -u2 "zshrc: powerlevel10k not found at $_p10k_theme (brew install powerlevel10k)"
+fi
+unset _p10k_theme
 
 # If a generated config ever appears (via `p10k configure`), let it win.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

@@ -3,7 +3,10 @@ set nowrap
 set autoindent
 set wordbounds
 
-include "/opt/brew/share/nano/*.nanorc"
+# nanorc has no variable expansion, so the homebrew prefix cannot be shared
+# with zshrc_mac. The glob covers both /opt/homebrew (Apple silicon) and
+# /opt/brew (custom prefix on the Intel machine).
+include "/opt/*/share/nano/*.nanorc"
 
 bind M-F nextword main
 bind M-B prevword main
