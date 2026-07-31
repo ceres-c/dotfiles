@@ -119,11 +119,45 @@ bindkey '^[f' forward-word
 bindkey '^[b' backward-word
 
 ############### VS CODE SHELL INTEGRATION ################
-# Only source manually when VS Code has NOT already injected it via ZDOTDIR
-# ($VSCODE_INJECTION=1). Doing both nests the decorations and corrupts the
-# command-start/command-end framing.
-if [[ "$TERM_PROGRAM" == "vscode" && -z "$VSCODE_INJECTION" ]]; then
-  _vsc_si_path="$(code --locate-shell-integration-path zsh 2>/dev/null)"
-  [[ -n "$_vsc_si_path" && -r "$_vsc_si_path" ]] && source "$_vsc_si_path"
+# VS Code reports "Shell integration: Rich" only when it receives
+#   \e]633;P;HasRichCommandDetection=True
+# which ONLY its own shellIntegration-rc.zsh emits (p10k never does). Internally
+# the check is literally `hasRichCommandDetection ? "rich" : "basic"`, so without
+# that one sequence the terminal is stuck on "Basic".
+#
+# The complication: p10k.zsh runs an unconditional `unset
+# VSCODE_SHELL_INTEGRATION` during init. In the INJECTED path VS Code sources
+# this .zshrc from the middle of its own script, so p10k's unset happens before
+# the script's `[ -z "$VSCODE_SHELL_INTEGRATION" ] && return` guard -- the script
+# then bails out and defines nothing. Net effect: injection alone yields zero
+# __vsc_* functions and only p10k's OSC 133 marks, i.e. "Basic".
+#
+# Fix: source the script here, at the END of .zshrc, after p10k has finished --
+# with VSCODE_SHELL_INTEGRATION and VSCODE_INJECTION both unset first (see the
+# comment on the pre-state below; getting either wrong makes this a no-op or
+# recurses infinitely).
+if [[ "$TERM_PROGRAM" == "vscode" ]]; then
+  # In the injected case the script is at $VSCODE_ZDOTDIR/.zshrc; otherwise ask
+  # `code`. `code --locate-shell-integration-path` forks node (~100ms), so only
+  # fall back to it when the injected copy is not available.
+  _vsc_si_path=""
+  if [[ -n "$VSCODE_ZDOTDIR" && -r "$VSCODE_ZDOTDIR/.zshrc" ]]; then
+    _vsc_si_path="$VSCODE_ZDOTDIR/.zshrc"
+  else
+    _vsc_si_path="$(code --locate-shell-integration-path zsh 2>/dev/null)"
+  fi
+  if [[ -n "$_vsc_si_path" && -r "$_vsc_si_path" ]]; then
+    # The pre-state here is load-bearing; both variables must be UNSET:
+    #   VSCODE_SHELL_INTEGRATION -- if set, the script's recursion guard at the
+    #     top returns immediately and defines nothing. (Setting it to 1 to
+    #     "re-arm" is exactly wrong; it silently disables the script.)
+    #   VSCODE_INJECTION -- if 1, the script re-sources $USER_ZDOTDIR/.zshrc,
+    #     which is THIS file: infinite recursion.
+    # $USER_ZDOTDIR must still be set so the script restores ZDOTDIR correctly.
+    : ${USER_ZDOTDIR:=$HOME}
+    unset VSCODE_SHELL_INTEGRATION VSCODE_INJECTION
+    source "$_vsc_si_path"
+  fi
   unset _vsc_si_path
 fi
+
