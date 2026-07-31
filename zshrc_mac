@@ -1,5 +1,12 @@
-export HOMEBREW_PREFIX="/opt/homebrew"
-source $HOMEBREW_PREFIX/share/powerlevel10k/powerlevel10k.zsh-theme
+############### POWERLEVEL10K INSTANT PROMPT ################
+# MUST stay at the very top of this file. Anything that produces output or
+# reads from stdin above this point breaks the instant prompt.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+############### ENVIRONMENT ################
+export HOMEBREW_PREFIX="/opt/brew"
 export HISTFILE="$HOME/.zsh_history"
 export HISTSIZE=100000000
 export SAVEHIST=100000000
@@ -7,7 +14,6 @@ export FPATH=$HOME/dotfiles/zsh_autocomplete_rclone:$FPATH
 export VISUAL=nano
 export EDITOR="$VISUAL"
 export ZSH_DISABLE_COMPFIX=true
-export PATH=/opt/homebrew/opt/python/libexec/bin/:$PATH
 export LANG="en_US.UTF-8"
 export LC_ADDRESS=it_IT.UTF-8
 export LC_COLLATE=it_IT.UTF-8
@@ -18,45 +24,89 @@ export LC_NUMERIC=it_IT.UTF-8
 export LC_PAPER=C
 export LC_TELEPHONE=it_IT.UTF-8
 export LC_TIME=C
+
+############### PATH ################
+# Use $HOMEBREW_PREFIX instead of `brew --prefix`: the latter forks a Ruby/bash
+# script on every single shell startup.
+export PATH="$HOMEBREW_PREFIX/bin:$PATH"
+export PATH="$HOMEBREW_PREFIX/opt/python/libexec/bin:$PATH"
+
+# Added by Antigravity (guarded: the original hardcoded /Users/ceres path is
+# for a different user account and does not exist here).
+[[ -d "$HOME/.antigravity/antigravity/bin" ]] && \
+  export PATH="$HOME/.antigravity/antigravity/bin:$PATH"
+
+############### PREZTO ################
+# Sourced BEFORE powerlevel10k so prezto can never override the prompt.
+# NOTE: init.zsh sources ~/.zpreztorc itself -- do not source it manually.
+# The 'prompt' pmodule is removed from ~/.zpreztorc so sorin cannot fight p10k.
+source "${HOME}/.zprezto/init.zsh"
+
+############### POWERLEVEL 10K ################
+# All POWERLEVEL9K_* settings must be assigned BEFORE the theme is sourced.
+# p10k snapshots its configuration at load time; later assignments are silently
+# ignored unless followed by an explicit `p10k reload`.
+
+# There is no ~/.p10k.zsh on this machine, so configure inline and suppress the
+# interactive wizard. Without this, p10k blocks the shell waiting for keypresses
+# -- that is what made VS Code report commands as never finishing.
+typeset -g POWERLEVEL9K_DISABLE_CONFIGURATION_WIZARD=true
+
+# Make p10k emit the OSC 133/633 marks itself. This is the actual fix for VS
+# Code shell integration: p10k rebuilds PROMPT on every redraw, wiping the
+# markers VS Code injects, so VS Code never sees command-end.
+typeset -g POWERLEVEL9K_TERM_SHELL_INTEGRATION=true
+
+typeset -g POWERLEVEL9K_MODE='nerdfont-complete'
+
+typeset -g POWERLEVEL9K_BATTERY_VERBOSE=false
+typeset -g POWERLEVEL9K_BATTERY_CHARGING='yellow'
+typeset -g POWERLEVEL9K_BATTERY_CHARGED='green'
+typeset -g POWERLEVEL9K_BATTERY_DISCONNECTED="$DEFAULT_COLOR"
+typeset -g POWERLEVEL9K_BATTERY_LOW_THRESHOLD='25'
+typeset -g POWERLEVEL9K_BATTERY_LOW_COLOR='red'
+typeset -g POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX=''
+# $'...' so the escape actually becomes the glyph rather than a literal \uf0da
+typeset -g POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX=$'\uf0da'
+
+typeset -g POWERLEVEL9K_VCS_MODIFIED_BACKGROUND='yellow'
+typeset -g POWERLEVEL9K_VCS_UNTRACKED_BACKGROUND='yellow'
+
+typeset -g POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(status user dir vcs)
+typeset -g POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(time virtualenv)
+
+typeset -g POWERLEVEL9K_SHORTEN_STRATEGY="truncate_middle"
+typeset -g POWERLEVEL9K_SHORTEN_DIR_LENGTH=4
+
+typeset -g POWERLEVEL9K_TIME_FORMAT="%D{%H:%M}"
+
+typeset -g POWERLEVEL9K_PROMPT_ON_NEWLINE=true
+
+source "$HOMEBREW_PREFIX/share/powerlevel10k/powerlevel10k.zsh-theme"
+
+# If a generated config ever appears (via `p10k configure`), let it win.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+############# END POWERLEVEL 10K ##############
+
+############### ALIASES ################
 alias lschmod='ls -la | awk '\''{k=0;for(i=0;i<=8;i++)k+=((substr($1,i+2,1)~/[rwx]/)*2^(8-i));if(k)printf("%0o ",k);print}'\'
 alias l1="ls -1"
 alias la="ls -la"
 alias rm='nocorrect rm'
 
-bindkey "<ESC>f" forward-word
-bindkey "<ESC>b" backward-word
+############### KEYBINDINGS ################
+# After prezto's `editor` module, otherwise these get clobbered.
+# '^[f' is the escape sequence for Alt/Meta-f; "<ESC>f" bound the literal
+# 5-character string "<ESC>f" and never worked.
+bindkey '^[f' forward-word
+bindkey '^[b' backward-word
 
-############### POWERLEVEL 10K ################
-POWERLEVEL9K_MODE='nerdfont-complete'
-
-POWERLEVEL9K_BATTERY_VERBOSE=false
-POWERLEVEL9K_BATTERY_CHARGING='yellow'
-POWERLEVEL9K_BATTERY_CHARGED='green'
-POWERLEVEL9K_BATTERY_DISCONNECTED='$DEFAULT_COLOR'
-POWERLEVEL9K_BATTERY_LOW_THRESHOLD='25'
-POWERLEVEL9K_BATTERY_LOW_COLOR='red'
-POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX=''
-POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX='\uf0da'
-
-POWERLEVEL9K_VCS_MODIFIED_BACKGROUND='yellow'
-POWERLEVEL9K_VCS_UNTRACKED_BACKGROUND='yellow'
-
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(status user dir vcs)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(time virtualenv)
-
-POWERLEVEL9K_SHORTEN_STRATEGY="truncate_middle"
-POWERLEVEL9K_SHORTEN_DIR_LENGTH=4
-
-POWERLEVEL9K_TIME_FORMAT="%D{%H:%M}"
-
-POWERLEVEL9K_PROMPT_ON_NEWLINE=true
-############# END POWERLEVEL 10K ##############
-
-source ${HOME}/.zpreztorc
-source ${HOME}/.zprezto/init.zsh
-
-# Added by Antigravity
-export PATH="/Users/ceres/.antigravity/antigravity/bin:$PATH"
-
-# Prefer brew tools
-export PATH=$(brew --prefix)/bin:$PATH
+############### VS CODE SHELL INTEGRATION ################
+# Only source manually when VS Code has NOT already injected it via ZDOTDIR
+# ($VSCODE_INJECTION=1). Doing both nests the decorations and corrupts the
+# command-start/command-end framing.
+if [[ "$TERM_PROGRAM" == "vscode" && -z "$VSCODE_INJECTION" ]]; then
+  _vsc_si_path="$(code --locate-shell-integration-path zsh 2>/dev/null)"
+  [[ -n "$_vsc_si_path" && -r "$_vsc_si_path" ]] && source "$_vsc_si_path"
+  unset _vsc_si_path
+fi
