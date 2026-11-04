@@ -133,6 +133,14 @@ for _map in emacs viins; do
   bindkey -M "$_map" $'\e[1;2H' kill-whole-line
   bindkey -M "$_map" $'\e[1;2F' kill-line
   bindkey -M "$_map" $'\e[4;2~' kill-line
+  # Home/End in CSI form: what xterm.js (VS Code's terminal) and other
+  # normal-cursor-mode terminals send. terminfo only knows the SS3 forms
+  # (\EOH/\EOF), so without these the Cmd+arrows and the Cmd+Backspace macro
+  # do nothing outside application-cursor-mode terminals.
+  bindkey -M "$_map" $'\e[H' beginning-of-line
+  bindkey -M "$_map" $'\e[F' end-of-line
+  bindkey -M "$_map" $'\e[1~' beginning-of-line
+  bindkey -M "$_map" $'\e[4~' end-of-line
 done
 unset _map
 
