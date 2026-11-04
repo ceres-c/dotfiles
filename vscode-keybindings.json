@@ -1,0 +1,36 @@
+// Place your key bindings in this file to override the defaults
+//
+// Terminal-scoped Home/End/Shift+Home/Shift+End: re-send the canonical
+// escape sequences instead of relying on xterm.js's encoding. This makes
+// keyd's Cmd+Backspace macro (Home Home Shift+End Backspace) and Cmd+arrows
+// work in the integrated terminal. Editor behavior is unchanged: these
+// entries only match while the integrated terminal has focus.
+//
+// NOTE: copier.sh copies this file over ~/.config/Code/User/keybindings.json;
+// move any personal bindings here before re-running it.
+[
+  {
+    "key": "home",
+    "command": "workbench.action.terminal.sendSequence",
+    "args": { "text": "\u001b[H" },
+    "when": "terminalFocus"
+  },
+  {
+    "key": "end",
+    "command": "workbench.action.terminal.sendSequence",
+    "args": { "text": "\u001b[F" },
+    "when": "terminalFocus"
+  },
+  {
+    "key": "shift+end",
+    "command": "workbench.action.terminal.sendSequence",
+    "args": { "text": "\u001b[1;2F" },
+    "when": "terminalFocus"
+  },
+  {
+    "key": "shift+home",
+    "command": "workbench.action.terminal.sendSequence",
+    "args": { "text": "\u001b[1;2H" },
+    "when": "terminalFocus"
+  }
+]

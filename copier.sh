@@ -200,6 +200,13 @@ ln -rsf nanorc "$HOME/.nanorc" # nano < 7 only reads this path
 
 install_terminator_config
 
+# VS Code: force canonical Home/End sequences in the integrated terminal so
+# keyd's Cmd+Backspace macro and Cmd+arrows work there too (see
+# vscode-keybindings.json). Only applied when VS Code is installed.
+if [ -d "$HOME/.config/Code/User" ]; then
+	cp "$DOTFILES/vscode-keybindings.json" "$HOME/.config/Code/User/keybindings.json"
+fi
+
 # GNOME/systemd user environment.
 if [ -d "$DOTFILES/environment.d" ]; then
 	mkdir -p "$HOME/.config/environment.d"

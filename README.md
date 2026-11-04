@@ -24,6 +24,9 @@ Icons NG, and Dash to Dock, then applies the GNOME preferences.
 - Command+Option+Left/Right moves focus between Terminator panes.
 - OpenCode's TUI uses Command+Left/Right for input-line boundaries rather than
   transcript navigation.
+- VS Code's integrated terminal gets canonical Home/End sequences via
+  vscode-keybindings.json (installed by copier.sh), so the same Cmd shortcuts
+  work there without relying on xterm.js's key encoding.
 
 GNOME Shell and Dash to Dock's Super+1–9/0 app-launch shortcuts are disabled so
 Terminator can use those combinations for tabs. Terminator's default “insert
