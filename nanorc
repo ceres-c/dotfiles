@@ -14,7 +14,6 @@ include /usr/share/nano/pov.nanorc
 include /usr/share/nano/spec.nanorc
 include /usr/share/nano/po.nanorc
 include /usr/share/nano/nanohelp.nanorc
-include /usr/share/nano/gentoo.nanorc
 include /usr/share/nano/groff.nanorc
 include /usr/share/nano/lua.nanorc
 include /usr/share/nano/asm.nanorc

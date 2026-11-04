@@ -1,0 +1,13 @@
+{
+  "$schema": "https://opencode.ai/v2/cli.json",
+  "keybinds": {
+    "session.first": "ctrl+g,alt+home",
+    "session.last": "ctrl+alt+g",
+    "input.line.home": "home",
+    "input.line.end": "end",
+    "input.select.line.home": "shift+home",
+    "input.select.line.end": "shift+end",
+    "input.select.buffer.home": "none",
+    "input.select.buffer.end": "none"
+  }
+}
