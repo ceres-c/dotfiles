@@ -105,4 +105,31 @@ gsettings set org.gnome.desktop.peripherals.keyboard repeat-interval 30
 # Finder's AppleShowAllFiles equivalent.
 gsettings set org.gnome.nautilus.preferences show-hidden-files true
 
+# ------------------------------------------------------- display scaling -----
+# Fractional scaling requires mutter's scale-monitor-framebuffer experimental
+# feature; xwayland-native-scaling keeps X11 apps crisp under fractional
+# scales. Both are needed by the fixed-display-scale service (installed by
+# copier.sh). Merge into the existing list instead of replacing it.
+python3 - <<'PY'
+import ast
+import subprocess
+
+required = {'scale-monitor-framebuffer', 'xwayland-native-scaling'}
+raw = subprocess.check_output(
+    ['gsettings', 'get', 'org.gnome.mutter', 'experimental-features'], text=True
+).strip()
+if raw in ('@as []', '[]'):
+    current = set()
+else:
+    current = set(ast.literal_eval(raw.replace('@as ', '')))
+missing = required - current
+if missing:
+    value = '[' + ', '.join(repr(e) for e in sorted(current | required)) + ']'
+    subprocess.run(
+        ['gsettings', 'set', 'org.gnome.mutter', 'experimental-features', value],
+        check=True,
+    )
+    print('[#] Enabled mutter experimental features: ' + ', '.join(sorted(missing)))
+PY
+
 echo "[#] GNOME settings applied"

@@ -213,6 +213,24 @@ if [ -d "$DOTFILES/environment.d" ]; then
 	ln -rsf environment.d/90-desktop.conf "$HOME/.config/environment.d/90-desktop.conf"
 fi
 
+# Keep the UI scale fixed across Parallels display switches: moving the VM
+# between host displays swaps the guest resolution mode and mutter's fallback
+# resets the scale to 100% (see README, "Display scaling"). The script and
+# systemd unit are symlinked so repo updates propagate; the config is copied
+# only when absent so local scale tweaks survive re-runs.
+install_fixed_display_scale() {
+	mkdir -p "$HOME/.local/bin" "$HOME/.config/systemd/user"
+	ln -rsf "$DOTFILES/fixed-display-scale.py" "$HOME/.local/bin/fixed-display-scale.py"
+	if [ ! -e "$HOME/.config/fixed-display-scale.conf" ]; then
+		cp "$DOTFILES/fixed-display-scale.conf" "$HOME/.config/fixed-display-scale.conf"
+	fi
+	ln -rsf "$DOTFILES/fixed-display-scale.service" "$HOME/.config/systemd/user/fixed-display-scale.service"
+	systemctl --user daemon-reload
+	systemctl --user enable fixed-display-scale.service >/dev/null
+	systemctl --user restart fixed-display-scale.service
+}
+install_fixed_display_scale
+
 # Start ssh-agent on login (Debian uses socket activation)
 if [ -n "${XDG_RUNTIME_DIR:-}" ]; then
 	systemctl --user enable --now ssh-agent.socket 2>/dev/null || true
