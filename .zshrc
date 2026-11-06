@@ -188,3 +188,6 @@ if [[ "$TERM_PROGRAM" == "vscode" ]]; then
   fi
   unset _vsc_si_path
 fi
+
+# Use the user-local Node.js installation.
+export PATH="$HOME/.local/opt/node-v26.13.0-linux-arm64/bin:$PATH"
