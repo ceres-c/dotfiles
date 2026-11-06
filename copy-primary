@@ -1,0 +1,7 @@
+#!/bin/sh
+# Copy the current primary selection (mouse-selected text) to the clipboard.
+# Bound to Super+C via GNOME custom keybindings; see gnome-settings.sh.
+# The key is consumed by GNOME and never reaches the focused application,
+# so Ctrl+C remains a pure interrupt in terminals.
+p=$(wl-paste -p -n 2>/dev/null) || exit 0
+[ -n "$p" ] && printf %s "$p" | wl-copy

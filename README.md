@@ -28,12 +28,12 @@ switches, then applies the GNOME preferences.
 - VS Code's integrated terminal gets canonical Home/End sequences via
   vscode-keybindings.json (installed by copier.sh), so the same Cmd shortcuts
   work there without relying on xterm.js's key encoding.
-- Cmd+C/Cmd+V copy and paste everywhere, with clean terminal semantics:
-  Ctrl+C stays a pure interrupt and Ctrl+V keeps its shell meaning. This is
-  done by keyd globally (Cmd+C/V → Ctrl+C/V for GUI apps), a Terminator
-  override mapping them to its Ctrl+Shift+C/V clipboard keys, and VS Code
-  handling the raw Meta+C/V itself (editor copy/paste, terminal
-  copySelection/paste) via vscode-keybindings.json.
+- Cmd+C copies the current selection to the clipboard via a GNOME custom
+  keybinding (Super+C runs the copy-primary helper): the key never reaches
+  applications, so Ctrl+C stays a pure interrupt in every terminal. Note it
+  copies what the primary selection holds, so select with the mouse first.
+  Cmd+V maps to Ctrl+V; Terminator and VS Code's terminal bind Ctrl+V to
+  paste.
 
 GNOME Shell and Dash to Dock's Super+1–9/0 app-launch shortcuts are disabled so
 Terminator can use those combinations for tabs. Terminator's default “insert

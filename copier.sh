@@ -104,7 +104,8 @@ fi
 sudo apt-get update
 sudo apt-get install -y \
 	zsh tmux nano htop git curl unzip fontconfig \
-	terminator gnome-tweaks keyd keyd-application-mapper
+	terminator gnome-tweaks keyd keyd-application-mapper \
+	wl-clipboard
 
 install_gnome_extensions
 
@@ -206,6 +207,12 @@ install_terminator_config
 if [ -d "$HOME/.config/Code/User" ]; then
 	cp "$DOTFILES/vscode-keybindings.json" "$HOME/.config/Code/User/keybindings.json"
 fi
+
+# Cmd+C helper: copies the primary selection to the clipboard. Bound to
+# Super+C by gnome-settings.sh; keyd passes Super+C through unbound.
+mkdir -p "$HOME/.local/bin"
+chmod +x "$DOTFILES/copy-primary"
+ln -rsf "$DOTFILES/copy-primary" "$HOME/.local/bin/copy-primary"
 
 # GNOME/systemd user environment.
 if [ -d "$DOTFILES/environment.d" ]; then

@@ -34,23 +34,8 @@
     "when": "terminalFocus"
   },
   {
-    "key": "meta+c",
-    "command": "workbench.action.terminal.copySelection",
-    "when": "terminalFocus"
-  },
-  {
-    "key": "meta+v",
+    "key": "ctrl+v",
     "command": "workbench.action.terminal.paste",
     "when": "terminalFocus"
-  },
-  {
-    "key": "meta+c",
-    "command": "editor.action.clipboardCopyAction",
-    "when": "editorTextFocus"
-  },
-  {
-    "key": "meta+v",
-    "command": "editor.action.clipboardPasteAction",
-    "when": "editorTextFocus"
   }
 ]

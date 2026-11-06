@@ -81,6 +81,35 @@ if 'terminator.desktop' not in favourites:
     subprocess.run(['gsettings', 'set', schema, key, value], check=True)
 PY
 
+# Cmd+C (Super+C): copy the primary selection to the clipboard. keyd passes
+# Super+C through unbound, so gnome-settings-daemon runs the helper and the
+# key never reaches the focused application - Ctrl+C stays a pure interrupt
+# in every terminal.
+COPY_PATH='/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/copy-primary/'
+COPY_SCHEMA="org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:$COPY_PATH"
+if [ -x "$HOME/.local/bin/copy-primary" ]; then
+	gsettings set "$COPY_SCHEMA" name 'Copy selection to clipboard'
+	gsettings set "$COPY_SCHEMA" command "$HOME/.local/bin/copy-primary"
+	gsettings set "$COPY_SCHEMA" binding '<Super>c'
+	python3 - "$COPY_PATH" <<'PY'
+import ast
+import subprocess
+import sys
+
+path = sys.argv[1]
+schema = 'org.gnome.settings-daemon.plugins.media-keys'
+raw = subprocess.check_output(['gsettings', 'get', schema, 'custom-keybindings'], text=True).strip()
+if raw in ('@as []', '[]'):
+    paths = []
+else:
+    paths = list(ast.literal_eval(raw.replace('@as ', '')))
+if path not in paths:
+    paths.append(path)
+    value = '[' + ', '.join(repr(p) for p in paths) + ']'
+    subprocess.run(['gsettings', 'set', schema, 'custom-keybindings', value], check=True)
+PY
+fi
+
 # ---------------------------------------------------------------- fonts ------
 # Monospace font used in Terminator.
 gsettings set org.gnome.desktop.interface monospace-font-name 'SauceCodePro Nerd Font 15'
